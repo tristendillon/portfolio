@@ -7,6 +7,7 @@ import { ThemeToggle, MotionDiv, SocialButton } from '@/components/ui'
 import { ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
 import { GridSection } from '@/components/project-components'
+import Script from 'next/script'
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>
@@ -20,13 +21,34 @@ export const generateMetadata = async ({
 
   if (!project) return notFound()
 
+  const title = `${project.meta.title} | Tristen Dillon Portfolio`
+  const description = project.meta.description
+
   return {
-    title: project.meta.title,
-    description: project.meta.description,
+    title,
+    description,
+    keywords: [
+      ...(project.meta.technologies || []),
+      'case study',
+      'portfolio project',
+      'Tristen Dillon',
+    ],
     openGraph: {
-      title: project.meta.title,
-      description: project.meta.description,
-      images: [{ url: project.meta.image }],
+      type: 'article',
+      title,
+      description,
+      images: [{ url: project.meta.image, alt: project.meta.title }],
+      url: `https://portfolio.tdilly.com/projects/${slug}`,
+      siteName: 'Tristen Dillon Portfolio',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [project.meta.image],
+    },
+    alternates: {
+      canonical: `https://portfolio.tdilly.com/projects/${slug}`,
     },
   }
 }
@@ -61,8 +83,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const projectData = projects[slug]
   if (!projectData) return notFound()
 
+  // Create project schema for structured data
+  const projectSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: projectData.meta.title,
+    description: projectData.meta.description,
+    author: {
+      '@type': 'Person',
+      name: 'Tristen Dillon',
+      url: 'https://tristendillon.com',
+    },
+    image: projectData.meta.image,
+    url: `https://tristendillon.com/projects/${slug}`,
+    ...(projectData.meta.github && { codeRepository: projectData.meta.github }),
+    keywords: (projectData.meta.technologies || []).join(', '),
+  }
+
   return (
     <div className="min-h-screen bg-background w-full overflow-x-hidden flex flex-col">
+      <Script
+        id="schema-project"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
+
       <header className="h-16 border-b fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link
@@ -86,9 +131,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          {/* <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 sr-only">
             {projectData.meta.title}
-          </h1> */}
+          </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
             {projectData.meta.description}
           </p>

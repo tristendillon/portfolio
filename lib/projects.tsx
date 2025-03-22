@@ -12,6 +12,13 @@ export const projects: Projects = {
       description: 'Draftboard app for ESPN Fantasy Football',
       image: '/images/PickPulse.png',
       github: 'https://github.com/tristendillon/pick-pulse-old',
+      technologies: [
+        'NextJS',
+        'TailwindCSS',
+        'TypeScript',
+        'Framer Motion',
+        'Supabase',
+      ],
     },
     sections: [
       {
@@ -254,6 +261,14 @@ export const projects: Projects = {
       description: 'Collaborative project planning project (Hackathon Winner)',
       image: '/images/MyPlanit.png',
       github: 'https://github.com/LunarHUE/MyPlanit-Frontend',
+      technologies: [
+        'React',
+        'NextJS',
+        'Go',
+        'TailwindCSS',
+        'Azure',
+        'Claude AI',
+      ],
     },
     sections: [
       {
@@ -454,6 +469,13 @@ export const projects: Projects = {
       description: 'Interactive showcase of technical projects and skills',
       image: '/images/Portfolio.png',
       github: 'https://github.com/tristendillon/portfolio',
+      technologies: [
+        'NextJS',
+        'TailwindCSS',
+        'TypeScript',
+        'Framer Motion',
+        'Supabase',
+      ],
     },
     sections: [
       {
@@ -591,6 +613,13 @@ export const projects: Projects = {
       description: 'Custom integration for emergency response systems',
       image: '/images/AlertDashboard.png',
       github: 'https://github.com/tristendillon/active911-integration',
+      technologies: [
+        'NextJS',
+        'TailwindCSS',
+        'TypeScript',
+        'Framer Motion',
+        'Supabase',
+      ],
     },
     sections: [
       {
@@ -727,6 +756,13 @@ export const projects: Projects = {
         'Tool to validate occupancy data from a CSV file against google validated addresses',
       image: '/images/Occupancy.png',
       github: 'https://github.com/Tristen-Dillon/occupancy',
+      technologies: [
+        'Python',
+        'Pandas',
+        'Google Maps API',
+        'NextJS',
+        'TypeScript',
+      ],
     },
     sections: [
       {
@@ -846,6 +882,7 @@ export const projects: Projects = {
         'Scheduling system for a window cleaning company that my Co-Worker owns',
       image: '/images/Scheduling.png',
       github: 'https://github.com/Tristen-Dillon/firstdue-scheduling',
+      technologies: ['NextJS', 'PayloadCMS', 'TailwindCSS', 'TypeScript'],
     },
     sections: [
       {
@@ -970,6 +1007,7 @@ export const projects: Projects = {
       description: 'A demonstration of all available project components',
       image: '/images/ComponentDisplay.png',
       github: 'https://github.com/tristendillon/portfolio',
+      technologies: ['NextJS', 'TailwindCSS', 'TypeScript', 'Framer Motion'],
     },
     sections: [
       {

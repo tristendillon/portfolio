@@ -35,6 +35,7 @@ export type StandardSection = {
 export type ProjectSection = GridSection | StandardSection
 
 export type ProjectMeta = {
+  technologies?: string[]
   title: string
   description: string
   image: string
