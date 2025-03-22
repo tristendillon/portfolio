@@ -86,9 +86,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+          {/* <h1 className="text-3xl md:text-4xl font-bold mb-4">
             {projectData.meta.title}
-          </h1>
+          </h1> */}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
             {projectData.meta.description}
           </p>
@@ -103,7 +103,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
         </MotionDiv>
 
-        <div className="space-y-16">
+        <div className="md:space-y-16 space-y-8">
           {projectData.sections.map((section, index) => (
             <MotionDiv
               key={index}

@@ -1,4 +1,9 @@
+import { FaReact } from 'react-icons/fa'
+import { VscAzure } from 'react-icons/vsc'
 import { Projects } from './types'
+import { RiClaudeFill, RiNextjsFill } from 'react-icons/ri'
+import { FaGolang } from 'react-icons/fa6'
+import { SiTailwindcss } from 'react-icons/si'
 
 export const projects: Projects = {
   'pick-pulse': {
@@ -292,12 +297,35 @@ export const projects: Projects = {
           props: {
             title: 'Technologies Used',
             technologies: [
-              'React',
-              'NextJS',
-              'Go',
-              'TailwindCSS',
-              'Azure',
-              'Claude AI',
+              {
+                name: 'React',
+                icon: <FaReact fill="#61DAFB" className="h-8 w-8" />,
+              },
+              {
+                name: 'NextJS',
+                icon: (
+                  <RiNextjsFill
+                    fill="#000000"
+                    className="h-8 w-8 bg-white/30 rounded-full"
+                  />
+                ),
+              },
+              {
+                name: 'Go',
+                icon: <FaGolang fill="#00ADD8" className="h-8 w-8" />,
+              },
+              {
+                name: 'TailwindCSS',
+                icon: <SiTailwindcss fill="#38BDF8" className="h-8 w-8" />,
+              },
+              {
+                name: 'Azure',
+                icon: <VscAzure fill="#0078D4" className="h-8 w-8" />,
+              },
+              {
+                name: 'Claude AI',
+                icon: <RiClaudeFill fill="#d27b63" className="h-8 w-8" />,
+              },
             ],
             variant: 'grid',
             columns: 3,
@@ -368,7 +396,7 @@ export const projects: Projects = {
           props: {
             text: 'Great use of AI and well made UI/UX. I would use this if I was a student.',
             author: 'Hackathon Judge',
-            variant: 'highlight',
+            variant: 'default',
           },
         },
       },
@@ -609,11 +637,12 @@ export const projects: Projects = {
               props: {
                 title: 'Technologies',
                 technologies: [
-                  'Python',
+                  'Go',
                   'REST APIs',
                   'WebHooks',
-                  'AWS Lambda',
+                  'Azure',
                   'PostgreSQL',
+                  'NextJS',
                 ],
                 variant: 'default',
               },
@@ -632,18 +661,19 @@ export const projects: Projects = {
                       'Process emergency alerts from multiple sources in real-time',
                   },
                   {
-                    title: 'GIS Integration',
+                    title: 'Active Weather Alerts',
                     description:
-                      'Map alerts to geographic locations with detailed spatial information',
-                  },
-                  {
-                    title: 'Responder Tracking',
-                    description: 'Track responder locations and availability',
+                      'Get real-time weather alerts and warnings from the National Weather Service',
                   },
                   {
                     title: 'API Webhooks',
                     description:
                       'Seamless integration with third-party emergency systems',
+                  },
+                  {
+                    title: 'Logging & Monitoring',
+                    description:
+                      'Detailed logging and monitoring of all alerts and responses',
                   },
                 ],
               },
@@ -665,17 +695,6 @@ export const projects: Projects = {
       {
         type: 'standard',
         component: {
-          component: 'Quote',
-          props: {
-            text: 'The Active911 integration has significantly improved our response times and coordination during emergency situations.',
-            author: 'Emergency Services Coordinator',
-            variant: 'highlight',
-          },
-        },
-      },
-      {
-        type: 'standard',
-        component: {
           component: 'LinkGrid',
           props: {
             title: 'Project Resources',
@@ -687,10 +706,10 @@ export const projects: Projects = {
                 platform: 'github',
               },
               {
-                title: 'Active911 API',
-                url: 'https://active911.com/api/',
-                description: 'Official API documentation',
-                platform: 'docs',
+                title: 'Active911',
+                url: 'https://active911.com/',
+                description: 'Active911 official website',
+                platform: 'website',
               },
             ],
             columns: 2,
@@ -782,17 +801,6 @@ export const projects: Projects = {
                       'Generate detailed reports of validation results',
                   },
                 ],
-              },
-            },
-          },
-          {
-            width: 1,
-            component: {
-              component: 'Quote',
-              props: {
-                text: 'This tool saved our team countless hours of manual data validation and significantly improved the accuracy of our occupancy records.',
-                author: 'Project Stakeholder',
-                variant: 'simple',
               },
             },
           },
@@ -895,13 +903,12 @@ export const projects: Projects = {
               props: {
                 title: 'Technologies',
                 technologies: [
-                  'React',
-                  'Java Spring',
-                  'WebSockets',
-                  'Redis',
-                  'JUnit',
+                  'NextJS',
+                  'PayloadCMS',
+                  'TailwindCSS',
+                  'TypeScript',
                 ],
-                variant: 'grid',
+                variant: 'pills',
                 columns: 2,
               },
             },
@@ -914,57 +921,25 @@ export const projects: Projects = {
                 title: 'Key Components',
                 features: [
                   {
-                    title: 'Shift Management',
+                    title: 'Scheduling Calendar',
                     description:
-                      'Schedule and manage staff shifts with drag-and-drop interface',
-                  },
-                  {
-                    title: 'Conflict Detection',
-                    description:
-                      'Automatically detect and prevent scheduling conflicts',
-                  },
-                  {
-                    title: 'Real-time Updates',
-                    description:
-                      'Instant synchronization across all users via WebSockets',
-                  },
-                  {
-                    title: 'Audit Logging',
-                    description:
-                      'Comprehensive logs of all scheduling changes for accountability',
+                      'Schedule and manage appointments with a clean calendar interface',
                   },
                   {
                     title: 'Client Management',
                     description:
-                      'Track client information, service history, and preferences',
+                      'Manage client information, client events, and preferences',
+                  },
+                  {
+                    title: 'Email Broadcasting',
+                    description:
+                      'Send email broadcasts to all clients with a simple interface',
                   },
                 ],
               },
             },
           },
         ],
-      },
-      {
-        type: 'standard',
-        component: {
-          component: 'Divider',
-          props: {
-            type: 'dots',
-            color: 'primary',
-            spacing: 'md',
-          },
-        },
-      },
-      {
-        type: 'standard',
-        component: {
-          component: 'Quote',
-          props: {
-            text: "The scheduling system has significantly reduced our administrative overhead and virtually eliminated double-bookings. It's become an essential part of our daily operations.",
-            author: 'Business Owner',
-            variant: 'highlight',
-          },
-        },
       },
       {
         type: 'standard',
