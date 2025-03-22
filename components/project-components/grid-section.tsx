@@ -36,14 +36,22 @@ export default function GridSection({
             ComponentPropsMap[typeof item.component.component]
           >
 
+          const noBackground = item.inCard !== undefined && !item.inCard
+          const padding = item.padding !== undefined ? item.padding * 4 : 24
           return (
             <div
               key={idx}
               className={`
-                bg-card border rounded-lg p-6 shadow-sm
+                rounded-lg shadow-sm
                 ${item.width === 2 ? 'md:col-span-2' : ''}
                 ${item.width === 3 ? 'md:col-span-3' : ''}
+                ${
+                  noBackground
+                    ? '!bg-background !border-none'
+                    : 'bg-card border'
+                }
               `}
+              style={{ padding }}
             >
               <SpecificComponent
                 {...item.component.props}

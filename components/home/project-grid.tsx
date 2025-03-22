@@ -10,7 +10,7 @@ import {
   Card,
   CardContent,
   Button,
-  SocialButton
+  SocialButton,
 } from '@/components/ui'
 
 interface ProjectGridProps {
@@ -110,6 +110,8 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                     src={meta.image}
                     alt={meta.title}
                     fill
+                    priority
+                    quality={100}
                     className="object-cover transition-transform duration-500 hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />

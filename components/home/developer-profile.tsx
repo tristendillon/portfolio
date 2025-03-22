@@ -7,7 +7,9 @@ import {
   CardContent,
   SocialButton,
   SocialPlatform,
+  ImageModal,
 } from '@/components/ui'
+import { useState } from 'react'
 
 interface SocialLink {
   platform: SocialPlatform
@@ -39,82 +41,95 @@ export default function DeveloperProfile({
   stack = [],
   index = 0,
 }: DeveloperProfileProps) {
+  const [modalOpen, setModalOpen] = useState(false)
+
   return (
-    <MotionDiv
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.43, 0.13, 0.23, 0.96],
-      }}
-    >
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-            <div className="flex flex-col items-center sm:items-start gap-4">
-              <MotionDiv
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="relative w-28 h-28 rounded-full overflow-hidden"
-              >
-                <Image
-                  src={profilePicture}
-                  alt={name}
-                  fill
-                  className="object-cover"
-                  sizes="112px"
-                  quality={100}
-                  priority
-                />
-              </MotionDiv>
+    <>
+      <MotionDiv
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.5,
+          delay: index * 0.1,
+          ease: [0.43, 0.13, 0.23, 0.96],
+        }}
+      >
+        <Card>
+          <CardContent className="p-6">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+              <div className="flex flex-col items-center sm:items-start gap-4">
+                <MotionDiv
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="relative w-28 h-28 rounded-full overflow-hidden cursor-pointer"
+                  onClick={() => setModalOpen(true)}
+                >
+                  <Image
+                    src={profilePicture}
+                    alt={name}
+                    fill
+                    className="object-cover hover:opacity-95 transition-opacity"
+                    sizes="112px"
+                    quality={100}
+                    priority
+                  />
+                </MotionDiv>
 
-              {socialLinks.length > 0 && (
-                <div className="flex gap-2 justify-center">
-                  {socialLinks.map((link, idx) => (
-                    <SocialButton
-                      key={idx}
-                      platform={link.platform}
-                      type="icon"
-                      size="sm"
-                      href={link.url}
-                      variant="outline"
-                      className="h-8 w-8 rounded-full"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="flex flex-col h-full text-center md:text-left justify-between gap-4 flex-grow">
-              <div>
-                <h3 className="text-xl font-semibold">{name}</h3>
-                <p className="text-sm text-muted-foreground">{role}</p>
+                {socialLinks.length > 0 && (
+                  <div className="flex gap-2 justify-center">
+                    {socialLinks.map((link, idx) => (
+                      <SocialButton
+                        key={idx}
+                        platform={link.platform}
+                        type="icon"
+                        size="sm"
+                        href={link.url}
+                        variant="outline"
+                        className="h-8 w-8 rounded-full"
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
-              <p className="text-sm">{bio}</p>
 
-              {stack.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
-                  {stack.map((tech, idx) => (
-                    <MotionDiv
-                      key={idx}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-1.5 bg-card border rounded-full px-3 py-1 text-xs"
-                      style={{ borderColor: tech.color }}
-                    >
-                      {tech.icon && (
-                        <span className="text-lg">{tech.icon}</span>
-                      )}
-                      {tech.name}
-                    </MotionDiv>
-                  ))}
+              <div className="flex flex-col h-full text-center md:text-left justify-between gap-4 flex-grow">
+                <div>
+                  <h3 className="text-xl font-semibold">{name}</h3>
+                  <p className="text-sm text-muted-foreground">{role}</p>
                 </div>
-              )}
+                <p className="text-sm">{bio}</p>
+
+                {stack.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {stack.map((tech, idx) => (
+                      <MotionDiv
+                        key={idx}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-1.5 bg-card border rounded-full px-3 py-1 text-xs"
+                        style={{ borderColor: tech.color }}
+                      >
+                        {tech.icon && (
+                          <span className="text-lg">{tech.icon}</span>
+                        )}
+                        {tech.name}
+                      </MotionDiv>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
-    </MotionDiv>
+          </CardContent>
+        </Card>
+      </MotionDiv>
+
+      {/* Image Modal */}
+      <ImageModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        imageSrc={profilePicture}
+        alt={name}
+      />
+    </>
   )
 }

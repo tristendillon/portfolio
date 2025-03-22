@@ -1,6 +1,6 @@
-import { ProjectGrid } from '@/components/project-components'
 import { MotionSection } from '@/components/ui/motion'
 import { projects } from '@/lib/projects'
+import ProjectGrid from './project-grid'
 
 export default function ProjectsSection() {
   return (

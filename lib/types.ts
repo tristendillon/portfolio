@@ -14,6 +14,8 @@ export interface ProjectComponent<T extends ProjectComponentType> {
 }
 
 export type GridItem = {
+  padding?: number
+  inCard?: boolean
   width: 1 | 2 | 3
   component: ProjectComponent<ProjectComponentType>
 }
