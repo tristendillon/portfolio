@@ -1,0 +1,7 @@
+export { default as Navbar } from './navbar'
+export { default as HeroSection } from './hero-section'
+export { default as AboutSection } from './about-section'
+export { default as ProjectsSection } from './projects-section'
+export { default as SkillsSection } from './skills-section'
+export { default as ContactSection } from './contact-section'
+export { default as Footer } from './footer'
