@@ -1,20 +1,20 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useState, useEffect } from 'react'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { Button } from '@/components/ui/button'
+import { Menu, X } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 const navItems = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState("")
+  const [activeSection, setActiveSection] = useState('')
   const [isScrolling, setIsScrolling] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -22,52 +22,57 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       if (!isScrolling) {
-        const sections = document.querySelectorAll("section[id]")
-        
+        const sections = document.querySelectorAll('section[id]')
+
         // Find the section that is most in view
-        let current = ""
+        let current = ''
         let maxVisiblePercentage = 0
-        
+
         sections.forEach((section) => {
           const sectionTop = section.getBoundingClientRect().top
           const sectionHeight = section.getBoundingClientRect().height
           const viewportHeight = window.innerHeight
-          
+
           // Calculate how much of the section is visible
-          const visibleHeight = Math.min(viewportHeight, sectionTop + sectionHeight) - 
-                                Math.max(0, sectionTop)
+          const visibleHeight =
+            Math.min(viewportHeight, sectionTop + sectionHeight) -
+            Math.max(0, sectionTop)
           const visiblePercentage = (visibleHeight / sectionHeight) * 100
-          
-          if (visiblePercentage > maxVisiblePercentage && visiblePercentage > 0) {
+
+          if (
+            visiblePercentage > maxVisiblePercentage &&
+            visiblePercentage > 0
+          ) {
             maxVisiblePercentage = visiblePercentage
-            current = section.getAttribute("id") || ""
+            current = section.getAttribute('id') || ''
           }
         })
-        
+
         setActiveSection(current)
       }
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [isScrolling])
 
   // Handle smooth scrolling when clicking nav items
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault()
     setMobileMenuOpen(false)
-    
-    const targetId = href.replace("#", "")
+
+    const targetId = href.replace('#', '')
     const targetElement = document.getElementById(targetId)
-    
+
     if (targetElement) {
       setIsScrolling(true)
-      targetElement.scrollIntoView({ behavior: "smooth" })
-      
-      // Update URL without refreshing page
-      window.history.pushState(null, "", href)
-      
-      // Set active section and reset scrolling flag
+      targetElement.scrollIntoView({ behavior: 'smooth' })
+
+      window.history.pushState(null, '', href)
+
       setTimeout(() => {
         setActiveSection(targetId)
         setIsScrolling(false)
@@ -76,12 +81,12 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold">TD</span>
         </div>
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
@@ -90,20 +95,20 @@ export default function Navbar() {
               href={item.href}
               onClick={(e) => scrollToSection(e, item.href)}
               className={cn(
-                "text-sm transition-colors hover:text-foreground",
+                'text-sm transition-colors hover:text-foreground font-medium',
                 activeSection === item.href.substring(1)
-                  ? "text-foreground font-medium"
-                  : "text-muted-foreground"
+                  ? 'text-foreground'
+                  : 'text-muted-foreground'
               )}
             >
               {item.name}
             </a>
           ))}
         </nav>
-        
+
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          
+
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
@@ -120,7 +125,7 @@ export default function Navbar() {
           </Button>
         </div>
       </div>
-      
+
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <nav className="md:hidden border-t p-4 bg-background animate-in slide-in-from-top-5">
@@ -131,10 +136,10 @@ export default function Navbar() {
                 href={item.href}
                 onClick={(e) => scrollToSection(e, item.href)}
                 className={cn(
-                  "flex items-center gap-2 p-2 rounded-md",
+                  'flex items-center gap-2 p-2 rounded-md',
                   activeSection === item.href.substring(1)
-                    ? "bg-accent text-accent-foreground font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                    ? 'bg-accent text-accent-foreground font-medium'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                 )}
               >
                 {item.name}

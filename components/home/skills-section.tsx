@@ -1,14 +1,19 @@
-"use client"
+'use client'
 
-import { MotionDiv, MotionSection } from "@/components/ui/motion"
-
-interface SkillCategoryProps {
+import { MotionDiv, MotionSection } from '@/components/ui/motion'
+import { Card } from '@/components/ui/card'
+import { FaReact, FaDocker, FaGit } from 'react-icons/fa'
+import { SiJest, SiTailwindcss, SiTypescript } from 'react-icons/si'
+import { FaGolang } from 'react-icons/fa6'
+import { RiNextjsFill } from 'react-icons/ri'
+import React from 'react'
+interface SkillProps {
   title: string
-  skills: string[]
+  description: string
   delay?: number
 }
 
-function SkillCategory({ title, skills, delay = 0 }: SkillCategoryProps) {
+function Skill({ title, description, delay = 0 }: SkillProps) {
   return (
     <MotionDiv
       initial={{ opacity: 0, y: 20 }}
@@ -17,20 +22,53 @@ function SkillCategory({ title, skills, delay = 0 }: SkillCategoryProps) {
       transition={{ duration: 0.5, delay }}
       className="bg-card border rounded-xl p-6 shadow-sm"
     >
-      <h3 className="text-xl font-semibold mb-4">{title}</h3>
-      <ul className="space-y-2">
-        {skills.map((skill, index) => (
-          <li key={index} className="flex items-start gap-2">
-            <div className="h-2 w-2 mt-2 rounded-full bg-primary" />
-            <span>{skill}</span>
-          </li>
-        ))}
-      </ul>
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <p className="text-sm text-muted-foreground">{description}</p>
+    </MotionDiv>
+  )
+}
+
+interface TechnologyProps {
+  name: string
+  icon: React.ReactNode
+  delay?: number
+}
+
+function Technology({ name, icon, delay = 0 }: TechnologyProps) {
+  return (
+    <MotionDiv
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      whileHover={{ y: -5 }}
+      className="flex flex-col items-center gap-2"
+    >
+      <div className="h-16 w-16 flex items-center justify-center bg-card border rounded-full p-3 shadow-sm">
+        {React.cloneElement(
+          icon as React.ReactElement,
+          {
+            className: 'text-foreground h-16 w-16',
+          } as React.SVGProps<SVGSVGElement>
+        )}
+      </div>
+      <span className="text-sm font-medium">{name}</span>
     </MotionDiv>
   )
 }
 
 export default function SkillsSection() {
+  const technologies = [
+    { name: 'React', icon: <FaReact /> },
+    { name: 'Next.js', icon: <RiNextjsFill /> },
+    { name: 'TypeScript', icon: <SiTypescript /> },
+    { name: 'Go', icon: <FaGolang /> },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+    { name: 'Docker', icon: <FaDocker /> },
+    { name: 'Jest', icon: <SiJest /> },
+    { name: 'Git', icon: <FaGit /> },
+  ]
+
   return (
     <MotionSection
       id="skills"
@@ -38,63 +76,69 @@ export default function SkillsSection() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-16 bg-accent/10"
+      className="py-16"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Skills & Technologies</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <SkillCategory 
-            title="Frontend" 
-            skills={[
-              "JavaScript/TypeScript",
-              "React & Next.js",
-              "HTML5/CSS3",
-              "Tailwind CSS",
-              "Framer Motion",
-              "Redux/Zustand"
-            ]}
-            delay={0}
-          />
-          
-          <SkillCategory 
-            title="Backend" 
-            skills={[
-              "Node.js",
-              "Express",
-              "Python/Django",
-              "REST APIs",
-              "GraphQL",
-              "Authentication"
-            ]}
-            delay={0.1}
-          />
-          
-          <SkillCategory 
-            title="Database & Cloud" 
-            skills={[
-              "MongoDB",
-              "PostgreSQL",
-              "Firebase",
-              "AWS/Azure",
-              "Docker",
-              "CI/CD Pipelines"
-            ]}
-            delay={0.2}
-          />
-          
-          <SkillCategory 
-            title="Tools & Methods" 
-            skills={[
-              "Git/GitHub",
-              "Agile/Scrum",
-              "Jest/Testing Library",
-              "Responsive Design",
-              "Performance Optimization",
-              "Accessibility (a11y)"
-            ]}
-            delay={0.3}
-          />
+        <h2 className="text-3xl font-bold mb-12 text-center">
+          Skills & Technologies
+        </h2>
+
+        <div className="space-y-16">
+          <div>
+            <h3 className="text-2xl font-semibold mb-6 text-center">
+              Professional Skills
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Skill
+                title="Communication"
+                description="Excellent verbal and written communication skills, with experience presenting complex technical concepts to diverse audiences."
+                delay={0}
+              />
+              <Skill
+                title="Problem Solving"
+                description="Strong analytical thinking and creative approach to resolving technical challenges efficiently."
+                delay={0.1}
+              />
+              <Skill
+                title="Team Collaboration"
+                description="Proven ability to work effectively in agile teams, mentor junior developers, and coordinate with cross-functional teams."
+                delay={0.2}
+              />
+              <Skill
+                title="Project Management"
+                description="Experience in planning, coordinating, and executing software development projects from concept to delivery."
+                delay={0.3}
+              />
+              <Skill
+                title="UI/UX Design"
+                description="Strong understanding of user-centered design principles and accessibility best practices."
+                delay={0.4}
+              />
+              <Skill
+                title="Continuous Learning"
+                description="Passionate about staying updated with the latest technologies and industry best practices."
+                delay={0.5}
+              />
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-semibold mb-6 text-center">
+              Technologies
+            </h3>
+            <Card className="p-8 border shadow-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-8">
+                {technologies.map((tech, index) => (
+                  <Technology
+                    key={tech.name}
+                    name={tech.name}
+                    icon={tech.icon}
+                    delay={index * 0.05}
+                  />
+                ))}
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     </MotionSection>

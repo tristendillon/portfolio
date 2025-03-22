@@ -12,16 +12,37 @@ export interface ProjectComponent<T extends ProjectComponentType> {
   component: T
   props: ComponentPropsMap[T]
 }
+
+export type GridItem = {
+  width: 1 | 2 | 3
+  component: ProjectComponent<ProjectComponentType>
+}
+
+export type GridSection = {
+  type: 'grid'
+  title?: string
+  description?: string
+  items: GridItem[]
+}
+
+export type StandardSection = {
+  type: 'standard'
+  component: ProjectComponent<ProjectComponentType>
+}
+
+export type ProjectSection = GridSection | StandardSection
+
 export type ProjectMeta = {
   title: string
   description: string
   image: string
+  github?: string
 }
 
 export type Projects = Record<
   string,
   {
     meta: ProjectMeta
-    components: ProjectComponent<ProjectComponentType>[]
+    sections: ProjectSection[]
   }
 >
