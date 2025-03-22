@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <contact@tdilly.com>',
       to: [toEmail],
+      cc: [email],
       subject: `Portfolio Contact: ${subject}`,
       replyTo: email,
       react: ContactEmail({ name, email, subject, message }),

@@ -534,6 +534,8 @@ export const projects: Projects = {
         type: 'grid',
         items: [
           {
+            padding: 0,
+            inCard: false,
             width: 2,
             component: {
               component: 'CodeBlock',
