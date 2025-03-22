@@ -8,6 +8,7 @@ interface Stat {
   value: number
   prefix?: string
   suffix?: string
+  unit?: string
 }
 
 interface StatsSectionProps {
@@ -54,6 +55,7 @@ export default function StatsSection({
               key={idx}
               stat={stat}
               delay={index * 0.1 + idx * 0.1}
+              unit={stat.unit}
             />
           ))}
         </div>
@@ -62,7 +64,15 @@ export default function StatsSection({
   )
 }
 
-function AnimatedStat({ stat, delay }: { stat: Stat; delay: number }) {
+function AnimatedStat({
+  stat,
+  delay,
+  unit,
+}: {
+  stat: Stat
+  delay: number
+  unit?: string
+}) {
   const [count, setCount] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const statRef = useRef<HTMLDivElement>(null)
@@ -88,7 +98,7 @@ function AnimatedStat({ stat, delay }: { stat: Stat; delay: number }) {
       }
     }
   }, [])
-
+  
   useEffect(() => {
     if (!isVisible) return
 
@@ -105,9 +115,10 @@ function AnimatedStat({ stat, delay }: { stat: Stat; delay: number }) {
       const easeOutExpo = 1 - Math.pow(2, -10 * progress)
 
       start = Math.min(Math.floor(end * easeOutExpo), end)
-      setCount(start + 1)
+      setCount(start)
 
-      if (start >= end) {
+      if (progress >= 1) {
+        setCount(end) // Ensure we always reach the exact final value
         clearInterval(timer)
       }
     }, 16) // ~60fps
@@ -134,6 +145,9 @@ function AnimatedStat({ stat, delay }: { stat: Stat; delay: number }) {
           <span className="ml-1 text-muted-foreground text-xl">
             {stat.suffix}
           </span>
+        )}
+        {unit && (
+          <span className="ml-1 text-muted-foreground text-xl">{unit}</span>
         )}
       </div>
       <p className="text-muted-foreground text-center">{stat.label}</p>

@@ -7,6 +7,7 @@ import { SiJest, SiTailwindcss, SiTypescript } from 'react-icons/si'
 import { FaGolang } from 'react-icons/fa6'
 import { RiNextjsFill } from 'react-icons/ri'
 import React from 'react'
+import { cn } from '@/lib/utils'
 interface SkillProps {
   title: string
   description: string
@@ -32,9 +33,16 @@ interface TechnologyProps {
   name: string
   icon: React.ReactNode
   delay?: number
+  wrapperClassName?: string
 }
 
-function Technology({ name, icon, delay = 0 }: TechnologyProps) {
+function Technology({
+  name,
+  icon,
+  delay = 0,
+  wrapperClassName,
+}: TechnologyProps) {
+  const iconElement = icon as React.ReactElement<React.SVGProps<SVGSVGElement>>
   return (
     <MotionDiv
       initial={{ opacity: 0, scale: 0.9 }}
@@ -44,13 +52,18 @@ function Technology({ name, icon, delay = 0 }: TechnologyProps) {
       whileHover={{ y: -5 }}
       className="flex flex-col items-center gap-2"
     >
-      <div className="h-16 w-16 flex items-center justify-center bg-card border rounded-full p-3 shadow-sm">
-        {React.cloneElement(
-          icon as React.ReactElement,
-          {
-            className: 'text-foreground h-16 w-16',
-          } as React.SVGProps<SVGSVGElement>
+      <div
+        className={cn(
+          'h-16 w-16 flex items-center justify-center bg-card border rounded-full p-3 shadow-sm',
+          wrapperClassName
         )}
+      >
+        {React.cloneElement(iconElement, {
+          className: cn(
+            'text-foreground h-16 w-16',
+            iconElement.props.className
+          ),
+        })}
       </div>
       <span className="text-sm font-medium">{name}</span>
     </MotionDiv>
@@ -59,14 +72,18 @@ function Technology({ name, icon, delay = 0 }: TechnologyProps) {
 
 export default function SkillsSection() {
   const technologies = [
-    { name: 'React', icon: <FaReact /> },
-    { name: 'Next.js', icon: <RiNextjsFill /> },
-    { name: 'TypeScript', icon: <SiTypescript /> },
-    { name: 'Go', icon: <FaGolang /> },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-    { name: 'Docker', icon: <FaDocker /> },
-    { name: 'Jest', icon: <SiJest /> },
-    { name: 'Git', icon: <FaGit /> },
+    { name: 'React', icon: <FaReact fill="#61DAFB" /> },
+    {
+      name: 'Next.js',
+      icon: <RiNextjsFill fill="#000000" />,
+      wrapperClassName: 'dark:bg-white/20 rounded-full',
+    },
+    { name: 'TypeScript', icon: <SiTypescript fill="#007ACC" /> },
+    { name: 'Go', icon: <FaGolang fill="#00ADD8" /> },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss fill="#38BDF8" /> },
+    { name: 'Docker', icon: <FaDocker fill="#2496ED" /> },
+    { name: 'Jest', icon: <SiJest fill="#C21325" /> },
+    { name: 'Git', icon: <FaGit fill="#F05032" /> },
   ]
 
   return (
@@ -133,6 +150,7 @@ export default function SkillsSection() {
                     key={tech.name}
                     name={tech.name}
                     icon={tech.icon}
+                    wrapperClassName={tech.wrapperClassName}
                     delay={index * 0.05}
                   />
                 ))}

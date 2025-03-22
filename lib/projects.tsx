@@ -1,546 +1,3 @@
-// import { Projects } from './types'
-
-// export const projects: Projects = {
-//   'ecommerce-platform': {
-//     meta: {
-//       title: 'E-commerce Platform',
-//       description:
-//         'A full-featured e-commerce platform with product management, shopping cart, and payment processing.',
-//       image: '/vercel.svg', // Replace with actual image path
-//       github: 'https://github.com/username/ecommerce-platform',
-//     },
-//     sections: [
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProjectShowcase',
-//           props: {
-//             title: 'E-commerce Platform',
-//             description:
-//               'A complete e-commerce solution built with Next.js and Stripe',
-//             technologies: [
-//               'Next.js',
-//               'React',
-//               'TypeScript',
-//               'Stripe',
-//               'Tailwind CSS',
-//             ],
-//             link: 'https://example.com/ecommerce',
-//           },
-//         },
-//       },
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ImageShowcase',
-//           props: {
-//             images: ['/vercel.svg', '/next.svg'], // Replace with actual image paths
-//             alt: 'E-commerce platform screenshot',
-//           },
-//         },
-//       },
-//       {
-//         type: 'grid',
-//         title: 'Key Features',
-//         description:
-//           'The platform includes several advanced features to enhance the shopping experience',
-//         items: [
-//           {
-//             width: 1,
-//             component: {
-//               component: 'FeatureList',
-//               props: {
-//                 title: 'Shopping Features',
-//                 features: [
-//                   {
-//                     title: 'Product Catalog',
-//                     description: 'Searchable and filterable catalog',
-//                   },
-//                   {
-//                     title: 'Shopping Cart',
-//                     description: 'Real-time cart updates',
-//                   },
-//                 ],
-//               },
-//             },
-//           },
-//           {
-//             width: 1,
-//             component: {
-//               component: 'FeatureList',
-//               props: {
-//                 title: 'Admin Features',
-//                 features: [
-//                   {
-//                     title: 'Inventory',
-//                     description: 'Stock management and alerts',
-//                   },
-//                   {
-//                     title: 'Analytics',
-//                     description: 'Sales and visitor tracking',
-//                   },
-//                 ],
-//               },
-//             },
-//           },
-//           {
-//             width: 1,
-//             component: {
-//               component: 'FeatureList',
-//               props: {
-//                 title: 'Technical Features',
-//                 features: [
-//                   { title: 'SEO', description: 'Optimized for search engines' },
-//                   { title: 'Performance', description: 'Fast loading times' },
-//                 ],
-//               },
-//             },
-//           },
-//         ],
-//       },
-//       {
-//         type: 'grid',
-//         title: 'Testimonials',
-//         items: [
-//           {
-//             width: 3,
-//             component: {
-//               component: 'Testimonial',
-//               props: {
-//                 quote:
-//                   'This e-commerce platform has transformed our business. The seamless checkout process and inventory management have increased our sales by 30% within the first month.',
-//                 author: 'Jane Smith',
-//                 role: 'CEO',
-//                 company: 'Fashion Boutique LLC',
-//               },
-//             },
-//           },
-//           {
-//             width: 1,
-//             component: {
-//               component: 'Testimonial',
-//               props: {
-//                 quote:
-//                   'The mobile responsiveness is outstanding. Our customers love shopping on their phones now.',
-//                 author: 'Mike Johnson',
-//                 role: 'Marketing Director',
-//                 company: 'TechGadgets Inc',
-//               },
-//             },
-//           },
-//           {
-//             width: 2,
-//             component: {
-//               component: 'Testimonial',
-//               props: {
-//                 quote:
-//                   'Integration with our existing systems was painless. The developer really understood our business needs and delivered a solution that works perfectly for us.',
-//                 author: 'Sarah Williams',
-//                 role: 'Operations Manager',
-//                 company: 'HomeGoods Co',
-//               },
-//             },
-//           },
-//         ],
-//       },
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProcessTimeline',
-//           props: {
-//             title: 'Development Process',
-//             steps: [
-//               {
-//                 title: 'Requirements Gathering',
-//                 description:
-//                   'Conducted stakeholder interviews and market research to define project scope and requirements.',
-//                 date: 'January 2025',
-//               },
-//               {
-//                 title: 'Design and Prototyping',
-//                 description:
-//                   'Created wireframes, mockups, and interactive prototypes with user feedback iterations.',
-//                 date: 'February 2025',
-//               },
-//               {
-//                 title: 'Frontend Development',
-//                 description:
-//                   'Built responsive UI components and integrated state management with React and Next.js.',
-//                 date: 'March 2025',
-//               },
-//               {
-//                 title: 'Backend Integration',
-//                 description:
-//                   'Implemented API endpoints, payment processing, and database models.',
-//                 date: 'April 2025',
-//               },
-//               {
-//                 title: 'Testing and Launch',
-//                 description:
-//                   'Conducted comprehensive testing, fixed bugs, and optimized performance before deployment.',
-//                 date: 'May 2025',
-//               },
-//             ],
-//           },
-//         },
-//       },
-//     ],
-//   },
-//   'task-management-app': {
-//     meta: {
-//       title: 'Task Management App',
-//       description:
-//         'A collaborative task management application for teams with real-time updates.',
-//       image: '/next.svg', // Replace with actual image path
-//       github: 'https://github.com/username/task-management-app',
-//     },
-//     sections: [
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProjectShowcase',
-//           props: {
-//             title: 'Task Management App',
-//             description:
-//               'Collaborative task management for teams with real-time updates',
-//             technologies: ['React', 'Firebase', 'Tailwind CSS', 'TypeScript'],
-//             link: 'https://example.com/task-app',
-//           },
-//         },
-//       },
-//       {
-//         type: 'grid',
-//         items: [
-//           {
-//             width: 2,
-//             component: {
-//               component: 'ImageShowcase',
-//               props: {
-//                 images: ['/next.svg'], // Replace with actual image path
-//                 alt: 'Task management app interface',
-//               },
-//             },
-//           },
-//           {
-//             width: 1,
-//             component: {
-//               component: 'CodeBlock',
-//               props: {
-//                 code: `// Task creation example
-// const createTask = async (data) => {
-//   try {
-//     await db.collection('tasks').add({
-//       ...data,
-//       createdAt: serverTimestamp(),
-//       status: 'pending'
-//     });
-//     showNotification('Task created!');
-//   } catch (error) {
-//     console.error('Error creating task:', error);
-//   }
-// };`,
-//                 language: 'javascript',
-//                 title: 'Task Creation Function',
-//               },
-//             },
-//           },
-//         ],
-//       },
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'FeatureList',
-//           props: {
-//             title: 'Key Features',
-//             features: [
-//               'Real-time collaboration',
-//               'Drag-and-drop interface',
-//               'Task assignments and deadlines',
-//               'Project grouping and tagging',
-//               'Activity tracking and notifications',
-//             ],
-//           },
-//         },
-//       },
-//     ],
-//   },
-//   'portfolio-website': {
-//     meta: {
-//       title: 'Portfolio Website',
-//       description:
-//         'A personal portfolio website showcasing projects and skills with a modern design.',
-//       image: '/file.svg', // Replace with actual image path
-//       github: 'https://github.com/username/portfolio-website',
-//     },
-//     sections: [
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProjectShowcase',
-//           props: {
-//             title: 'Portfolio Website',
-//             description: 'Personal portfolio with dark mode and animations',
-//             technologies: [
-//               'Next.js',
-//               'Framer Motion',
-//               'Tailwind CSS',
-//               'TypeScript',
-//             ],
-//             link: 'https://example.com/portfolio',
-//           },
-//         },
-//       },
-//       {
-//         type: 'grid',
-//         title: 'Website Features',
-//         items: [
-//           {
-//             width: 2,
-//             component: {
-//               component: 'ImageShowcase',
-//               props: {
-//                 images: ['/file.svg', '/globe.svg'], // Replace with actual image paths
-//                 alt: 'Portfolio website design',
-//               },
-//             },
-//           },
-//           {
-//             width: 1,
-//             component: {
-//               component: 'FeatureList',
-//               props: {
-//                 features: [
-//                   'Responsive design for all devices',
-//                   'Dark/light mode toggle',
-//                   'Smooth animations with Framer Motion',
-//                   'Static site generation for fast loading',
-//                   'Contact form with validation',
-//                 ],
-//               },
-//             },
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   'mobile-fitness-app': {
-//     meta: {
-//       title: 'Mobile Fitness App',
-//       description:
-//         'A fitness tracking application with workout plans, progress tracking, and social features.',
-//       image: '/window.svg', // Replace with actual image path
-//       github: 'https://github.com/username/fitness-app',
-//     },
-//     sections: [
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProjectShowcase',
-//           props: {
-//             title: 'Mobile Fitness App',
-//             description: 'Track workouts, set goals, and connect with friends',
-//             technologies: ['React Native', 'Firebase', 'Expo', 'TypeScript'],
-//             link: 'https://example.com/fitness-app',
-//           },
-//         },
-//       },
-//       {
-//         type: 'grid',
-//         title: 'App Features',
-//         items: [
-//           {
-//             width: 1,
-//             component: {
-//               component: 'FeatureList',
-//               props: {
-//                 title: 'Workout Tracking',
-//                 features: [
-//                   {
-//                     title: 'Exercise Library',
-//                     description: 'Over 500 exercises with instructions',
-//                   },
-//                   {
-//                     title: 'Custom Routines',
-//                     description: 'Create and save personalized workout plans',
-//                   },
-//                 ],
-//               },
-//             },
-//           },
-//           {
-//             width: 2,
-//             component: {
-//               component: 'ImageShowcase',
-//               props: {
-//                 images: ['/globe.svg'], // Replace with actual image path
-//                 alt: 'Fitness app screens',
-//               },
-//             },
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   'ai-chatbot': {
-//     meta: {
-//       title: 'AI Customer Service Chatbot',
-//       description:
-//         'An intelligent chatbot that handles customer inquiries and support tickets automatically.',
-//       image: '/file.svg', // Replace with actual image path
-//       github: 'https://github.com/username/ai-chatbot',
-//     },
-//     sections: [
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProjectShowcase',
-//           props: {
-//             title: 'AI Customer Service Chatbot',
-//             description:
-//               'Intelligent automated customer support powered by machine learning',
-//             technologies: ['Python', 'TensorFlow', 'NLP', 'FastAPI', 'React'],
-//             link: 'https://example.com/ai-chatbot',
-//           },
-//         },
-//       },
-//       {
-//         type: 'grid',
-//         items: [
-//           {
-//             width: 1,
-//             component: {
-//               component: 'CodeBlock',
-//               props: {
-//                 code: `# Example model training
-// import tensorflow as tf
-// from transformers import BertTokenizer
-
-// tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-// model = tf.keras.Sequential([
-//     tf.keras.layers.Input(shape=(128,)),
-//     tf.keras.layers.Dense(64, activation='relu'),
-//     tf.keras.layers.Dense(32, activation='relu'),
-//     tf.keras.layers.Dense(10, activation='softmax')
-// ])
-
-// model.compile(
-//     optimizer='adam',
-//     loss='sparse_categorical_crossentropy',
-//     metrics=['accuracy']
-// )`,
-//                 language: 'python',
-//                 title: 'Model Architecture',
-//               },
-//             },
-//           },
-//           {
-//             width: 2,
-//             component: {
-//               component: 'FeatureList',
-//               props: {
-//                 title: 'Chatbot Capabilities',
-//                 features: [
-//                   {
-//                     title: 'Intent Recognition',
-//                     description: 'Accurately identifies customer needs',
-//                   },
-//                   {
-//                     title: 'Multi-language Support',
-//                     description: 'Available in 12 languages',
-//                   },
-//                   {
-//                     title: 'Human Handoff',
-//                     description:
-//                       'Seamless transfer to human agents when needed',
-//                   },
-//                   {
-//                     title: 'Analytics Dashboard',
-//                     description: 'Track performance and conversation metrics',
-//                   },
-//                 ],
-//               },
-//             },
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   'data-visualization-dashboard': {
-//     meta: {
-//       title: 'Data Visualization Dashboard',
-//       description:
-//         'An interactive dashboard for visualizing complex datasets with customizable charts and filters.',
-//       image: '/next.svg', // Replace with actual image path
-//       github: 'https://github.com/username/data-viz-dashboard',
-//     },
-//     sections: [
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProjectShowcase',
-//           props: {
-//             title: 'Data Visualization Dashboard',
-//             description:
-//               'Interactive charts and graphs for complex data analysis',
-//             technologies: [
-//               'D3.js',
-//               'React',
-//               'Node.js',
-//               'MongoDB',
-//               'WebSockets',
-//             ],
-//             link: 'https://example.com/dashboard',
-//           },
-//         },
-//       },
-//       {
-//         type: 'grid',
-//         title: 'Dashboard Features',
-//         items: [
-//           {
-//             width: 3,
-//             component: {
-//               component: 'ImageShowcase',
-//               props: {
-//                 images: ['/vercel.svg', '/next.svg'], // Replace with actual image paths
-//                 alt: 'Dashboard screenshots',
-//               },
-//             },
-//           },
-//         ],
-//       },
-//       {
-//         type: 'standard',
-//         component: {
-//           component: 'ProcessTimeline',
-//           props: {
-//             title: 'Development Process',
-//             steps: [
-//               {
-//                 title: 'Requirements Analysis',
-//                 description:
-//                   'Interviewed stakeholders to identify key visualization needs',
-//                 date: 'January 2025',
-//               },
-//               {
-//                 title: 'Data Pipeline Design',
-//                 description: 'Created ETL processes for diverse data sources',
-//                 date: 'February 2025',
-//               },
-//               {
-//                 title: 'Frontend Development',
-//                 description:
-//                   'Built interactive visualization components with D3 and React',
-//                 date: 'March 2025',
-//               },
-//             ],
-//           },
-//         },
-//       },
-//     ],
-//   },
-// }
-
 import { Projects } from './types'
 
 export const projects: Projects = {
@@ -553,27 +10,70 @@ export const projects: Projects = {
     },
     sections: [
       {
+        type: 'standard',
+        component: {
+          component: 'Title',
+          props: {
+            text: 'PickPulse',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: `A passion project for fantasy football players. Trever, my brother, and myself created this app to help ESPN Fantasy Football players have a better experience when drafting on ESPN's platform.`,
+            align: 'center',
+            size: 'lg',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'TechStack',
+          props: {
+            title: 'Built With',
+            technologies: [
+              'NextJS',
+              'TailwindCSS',
+              'TypeScript',
+              'Framer Motion',
+              'Supabase',
+            ],
+            variant: 'pills',
+            columns: 5,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
         type: 'grid',
+        title: 'Product Overview',
         items: [
           {
-            inCard: false,
             width: 2,
             component: {
-              component: 'ProjectShowcase',
+              component: 'ImageWithCaption',
               props: {
-                title: 'PickPulse',
-                description: `A passion project for fantasy football players.
-                Trever, my brother, and myself created this app to help ESPN Fantasy Football players have a better experience when drafting on ESPN's platform.
-
-                  `,
-                technologies: [
-                  'NextJS',
-                  'TailwindCSS',
-                  'TypeScript',
-                  'Framer Motion',
-                  'Supabase',
-                ],
-                link: 'https://pick-pulse.com/',
+                src: '/images/PickPulse.png',
+                alt: 'PickPulse application screenshot',
+                caption: 'PickPulse draft interface',
+                aspectRatio: '16:9',
               },
             },
           },
@@ -582,6 +82,7 @@ export const projects: Projects = {
             component: {
               component: 'FeatureList',
               props: {
+                title: 'Key Features',
                 features: [
                   'Draftboard app for ESPN Fantasy Football',
                   'Real-time draft updates',
@@ -592,18 +93,86 @@ export const projects: Projects = {
             },
           },
           {
-            padding: 0,
-            width: 3,
+            width: 1,
             component: {
-              component: 'ImageShowcase',
+              component: 'ImageWithCaption',
               props: {
-                images: ['/images/PickPulse.png'],
+                src: '/images/ADPTable.png',
+                alt: 'ADP Table',
+                caption: 'Average Draft Position tracking',
               },
             },
           },
-
           {
             width: 2,
+            component: {
+              component: 'LinkGrid',
+              props: {
+                title: 'Links',
+                links: [
+                  {
+                    title: 'Live Website',
+                    url: 'https://pick-pulse.com/',
+                    description: 'Try the application',
+                    platform: 'website',
+                  },
+                  {
+                    title: 'GitHub Repository',
+                    url: 'https://github.com/tristendillon/pick-pulse-old',
+                    description: 'Source code',
+                    platform: 'github',
+                  },
+                ],
+                columns: 2,
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Quote',
+          props: {
+            text: 'Love this extension! Works great and is the perfect solution for hosting a fantasy football draft party!',
+            author: 'Miguel Aldaz',
+            source: 'Chrome Web Store Review',
+            variant: 'simple',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'StatsSection',
+          props: {
+            stats: [
+              {
+                label: 'Chrome Store Downloads',
+                value: 4000,
+              },
+              {
+                label: 'Users',
+                value: 2000,
+              },
+              {
+                label: 'Drafts Created',
+                value: 11117,
+              },
+              {
+                label: 'Picks Made',
+                value: 1_318_390,
+              },
+            ],
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'User Feedback',
+        items: [
+          {
+            width: 1,
             component: {
               component: 'Testimonial',
               props: {
@@ -616,19 +185,8 @@ export const projects: Projects = {
               },
             },
           },
-
           {
-            padding: 0,
-            width: 1,
-            component: {
-              component: 'ImageShowcase',
-              props: {
-                images: ['/images/ADPTable.png'],
-              },
-            },
-          },
-          {
-            width: 3,
+            width: 2,
             component: {
               component: 'Testimonial',
               props: {
@@ -642,20 +200,6 @@ export const projects: Projects = {
             },
           },
         ],
-      },
-      {
-        type: 'standard',
-        component: {
-          component: 'StatsSection',
-          props: {
-            stats: [
-              {
-                label: 'Chrome Store Downloads',
-                value: 1000,
-              },
-            ],
-          },
-        },
       },
       {
         type: 'standard',
@@ -699,94 +243,180 @@ export const projects: Projects = {
       },
     ],
   },
-  // 'pick-pulse-extension': {
-  //   meta: {
-  //     title: 'PickPulse Browser Extension',
-  //     description: 'Productivity-focused browser enhancement tool',
-  //     image: '/placeholder-pickpulse.svg',
-  //     github: 'https://github.com/tristendillon/pick-pulse-extension',
-  //   },
-  //   sections: [
-  //     {
-  //       type: 'standard',
-  //       component: {
-  //         component: 'ProjectShowcase',
-  //         props: {
-  //           title: 'PickPulse Extension',
-  //           description:
-  //             'Browser productivity booster with quick-access features',
-  //           technologies: ['Chrome APIs'],
-  //           link: 'https://chromewebstore.google.com/detail/pickpulse/ljnelhiofbippkmbeioamhnjihkecgbj',
-  //         },
-  //       },
-  //     },
-  //     {
-  //       type: 'grid',
-  //       items: [
-  //         {
-  //           width: 1,
-  //           component: {
-  //             component: 'FeatureList',
-  //             props: {
-  //               features: [
-  //                 'Quick-access menu',
-  //                 'Bookmark manager',
-  //                 'Tab organizer',
-  //                 'Cross-browser sync',
-  //               ],
-  //             },
-  //           },
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
-  'myplanit-frontend': {
+  myplanit: {
     meta: {
-      title: 'MyPlanit Planning Suite',
-      description: 'Collaborative project planning platform (Devpost Finalist)',
-      image: '/placeholder-planit.svg',
+      title: 'MyPlanit',
+      description: 'Collaborative project planning project (Hackathon Winner)',
+      image: '/images/MyPlanit.png',
       github: 'https://github.com/LunarHUE/MyPlanit-Frontend',
     },
     sections: [
       {
         type: 'standard',
         component: {
-          component: 'ProjectShowcase',
+          component: 'Title',
           props: {
-            title: 'MyPlanit',
-            description:
-              'Intuitive project management with AI-assisted planning',
+            text: 'MyPlanit',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Subtitle',
+          props: {
+            text: '1st Place Winner - K-State WebDev Hackathon 2024',
+            align: 'center',
+            size: 'lg',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: `MyPlanit is a time management tool that uses AI to help you plan your schedule using your assignments and courses from the Canvas API. This project was created in just one weekend for the Kansas State University Hackathon.`,
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'TechStack',
+          props: {
+            title: 'Technologies Used',
             technologies: [
               'React',
-              'TypeScript',
-              'Redux',
-              'Jest',
-              'AWS Amplify',
+              'NextJS',
+              'Go',
+              'TailwindCSS',
+              'Azure',
+              'Claude AI',
             ],
-            link: 'https://devpost.com/software/myplanit',
+            variant: 'grid',
+            columns: 3,
           },
         },
       },
       {
         type: 'grid',
-        title: 'Features',
         items: [
           {
             width: 2,
             component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/MyPlanit.png',
+                alt: 'MyPlanit application screenshot',
+                caption: 'MyPlanit user interface',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
               component: 'FeatureList',
               props: {
+                title: 'Key Features',
                 features: [
-                  'Interactive Gantt charts',
-                  'Team collaboration tools',
-                  'Resource allocation tracking',
-                  'AI-powered timeline predictions',
+                  'AI-powered task prioritization',
+                  'Canvas API integration',
+                  'Intelligent scheduling',
+                  'Assignment tracking',
+                  'Course management',
                 ],
               },
             },
           },
         ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'LinkGrid',
+          props: {
+            title: 'Project Links',
+            links: [
+              {
+                title: 'DevPost Submission',
+                url: 'https://devpost.com/software/myplanit',
+                description: 'Hackathon submission page',
+                platform: 'website',
+              },
+              {
+                title: 'GitHub Repository',
+                url: 'https://github.com/LunarHUE/MyPlanit-Frontend',
+                description: 'Frontend source code',
+                platform: 'github',
+              },
+            ],
+            columns: 2,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Quote',
+          props: {
+            text: 'Great use of AI and well made UI/UX. I would use this if I was a student.',
+            author: 'Hackathon Judge',
+            variant: 'highlight',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ProcessTimeline',
+          props: {
+            title: 'Development Process',
+            steps: [
+              {
+                title: 'Ideation',
+                description:
+                  'Since it was a collaborative Hackathon, our group brainstormed for a while to come up with the plan, we only had the weekend to work on the project so we had to be efficient.',
+                date: 'Day 1 - Morning',
+              },
+              {
+                title: 'Design & Development',
+                description:
+                  'I designed the UI/UX and then built the project using React, NextJS, and Go. While my team built the backend using Go and used Claude for the AI that we used.',
+                date: 'Day 1 - Afternoon to Day 2',
+              },
+              {
+                title: 'Testing & Launch',
+                description:
+                  'We ran into a lot of issues with the connection between the frontend and backend, but we were able to get it working in the end with minutes to spare.',
+                date: 'Day 2 - Evening',
+              },
+              {
+                title: 'Presentation & Win',
+                description:
+                  'We presented our project to the judges and won 1st place in the WebDev track!',
+                date: 'Day 3',
+              },
+            ],
+          },
+        },
       },
     ],
   },
@@ -794,25 +424,81 @@ export const projects: Projects = {
     meta: {
       title: 'Developer Portfolio',
       description: 'Interactive showcase of technical projects and skills',
-      image: '/placeholder-portfolio.svg',
+      image: '/images/Portfolio.png',
       github: 'https://github.com/tristendillon/portfolio',
     },
     sections: [
       {
         type: 'standard',
         component: {
-          component: 'ProjectShowcase',
+          component: 'Title',
           props: {
-            title: 'Portfolio Site',
-            description: 'Modern developer portfolio with interactive elements',
+            text: 'Portfolio Website',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: `I built this portfolio to showcase my projects and skills, but I also wanted to make it a challenge for myself. I did not want to create a conventional portfolio, so I decided to go for more of a SharePoint-esque approach to building each page, with modular and reusable components.`,
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ImageWithCaption',
+          props: {
+            src: '/images/Portfolio.png',
+            alt: 'Portfolio website screenshot',
+            caption: 'Main portfolio homepage',
+            aspectRatio: '16:9',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'TechStack',
+          props: {
+            title: 'Built With',
             technologies: [
               'Next.js',
               'TypeScript',
               'Framer Motion',
               'Tailwind CSS',
-              'Vercel',
+              'shadcn/ui',
             ],
-            link: 'https://portfolio.tdilly.com',
+            variant: 'pills',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Subtitle',
+          props: {
+            text: 'Component-Driven Architecture',
+            size: 'lg',
+            align: 'center',
           },
         },
       },
@@ -822,18 +508,50 @@ export const projects: Projects = {
           {
             width: 2,
             component: {
-              component: 'FeatureList',
+              component: 'CodeBlock',
               props: {
-                features: [
-                  'Dark/light mode',
-                  'Project showcases',
-                  'Interactive components',
-                  'Responsive design',
-                ],
+                filePath: 'project-definition.ts',
+                language: 'ts',
+                title: 'Project Definition Schema',
+                maxHeight: 300,
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'Description',
+              props: {
+                text: 'Each project page is defined declaratively using a schema that specifies which components to render and how to configure them. This makes it easy to add new projects and maintain consistency across the site.',
               },
             },
           },
         ],
+      },
+
+      {
+        type: 'standard',
+        component: {
+          component: 'LinkGrid',
+          props: {
+            title: 'Project Links',
+            links: [
+              {
+                title: 'Live Website',
+                url: 'https://portfolio.tdilly.com',
+                description: 'Visit the portfolio',
+                platform: 'website',
+              },
+              {
+                title: 'GitHub Repository',
+                url: 'https://github.com/tristendillon/portfolio',
+                description: 'View source code',
+                platform: 'github',
+              },
+            ],
+            columns: 2,
+          },
+        },
       },
     ],
   },
@@ -841,72 +559,192 @@ export const projects: Projects = {
     meta: {
       title: 'Active911 Integration',
       description: 'Custom integration for emergency response systems',
-      image: '/placeholder-911.svg',
+      image: '/images/AlertDashboard.png',
       github: 'https://github.com/tristendillon/active911-integration',
     },
     sections: [
       {
         type: 'standard',
         component: {
-          component: 'ProjectShowcase',
+          component: 'Title',
           props: {
-            title: 'Active911 Integration',
-            description: 'Real-time emergency response system integration',
-            technologies: [
-              'Python',
-              'REST APIs',
-              'WebHooks',
-              'AWS Lambda',
-              'PostgreSQL',
-            ],
+            text: 'Active911 Integration',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'A real-time emergency response system integration that processes alerts from various sources and distributes them to the appropriate responders, while providing geographical information and tracking capabilities.',
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ImageWithCaption',
+          props: {
+            src: '/images/AlertDashboard.png',
+            alt: 'Alert Dashboard',
+            caption: 'Emergency response alert dashboard',
+            aspectRatio: '16:9',
           },
         },
       },
       {
         type: 'grid',
+        title: 'Technical Overview',
         items: [
           {
             width: 1,
             component: {
+              component: 'TechStack',
+              props: {
+                title: 'Technologies',
+                technologies: [
+                  'Python',
+                  'REST APIs',
+                  'WebHooks',
+                  'AWS Lambda',
+                  'PostgreSQL',
+                ],
+                variant: 'default',
+              },
+            },
+          },
+          {
+            width: 2,
+            component: {
               component: 'FeatureList',
               props: {
+                title: 'Key Features',
                 features: [
-                  'Real-time alert processing',
-                  'GIS integration',
-                  'Responder tracking',
-                  'API webhooks',
+                  {
+                    title: 'Real-time Alert Processing',
+                    description:
+                      'Process emergency alerts from multiple sources in real-time',
+                  },
+                  {
+                    title: 'GIS Integration',
+                    description:
+                      'Map alerts to geographic locations with detailed spatial information',
+                  },
+                  {
+                    title: 'Responder Tracking',
+                    description: 'Track responder locations and availability',
+                  },
+                  {
+                    title: 'API Webhooks',
+                    description:
+                      'Seamless integration with third-party emergency systems',
+                  },
                 ],
               },
             },
           },
         ],
       },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Quote',
+          props: {
+            text: 'The Active911 integration has significantly improved our response times and coordination during emergency situations.',
+            author: 'Emergency Services Coordinator',
+            variant: 'highlight',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'LinkGrid',
+          props: {
+            title: 'Project Resources',
+            links: [
+              {
+                title: 'GitHub Repository',
+                url: 'https://github.com/tristendillon/active911-integration',
+                description: 'Source code and documentation',
+                platform: 'github',
+              },
+              {
+                title: 'Active911 API',
+                url: 'https://active911.com/api/',
+                description: 'Official API documentation',
+                platform: 'docs',
+              },
+            ],
+            columns: 2,
+          },
+        },
+      },
     ],
   },
   occupancy: {
     meta: {
-      title: 'Occupancy Tracking System',
+      title: 'Occupancy Validation Tool',
       description:
-        'Real-time space utilization monitoring and analytics platform',
-      image: '/placeholder-occupancy.svg',
+        'Tool to validate occupancy data from a CSV file against google validated addresses',
+      image: '/images/Occupancy.png',
       github: 'https://github.com/Tristen-Dillon/occupancy',
     },
     sections: [
       {
         type: 'standard',
         component: {
-          component: 'ProjectShowcase',
+          component: 'Title',
           props: {
-            title: 'Occupancy Tracker',
-            description:
-              'IoT-enabled system for monitoring space utilization in real-time',
+            text: 'Occupancy Validation Tool',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'I developed this tool for my workplace to validate and clean our occupancy data. The system checks addresses against the Google Maps API for accuracy, validates geographical coordinates, and ensures data consistency across our databases.',
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'TechStack',
+          props: {
+            title: 'Built With',
             technologies: [
-              'React',
-              'Node.js',
-              'WebSockets',
-              'PostgreSQL',
+              'Python',
+              'Pandas',
+              'Google Maps API',
+              'NextJS',
               'TypeScript',
             ],
+            variant: 'pills',
           },
         },
       },
@@ -915,77 +753,572 @@ export const projects: Projects = {
         title: 'Key Features',
         items: [
           {
-            width: 1,
+            width: 2,
             component: {
               component: 'FeatureList',
               props: {
-                title: 'Core Features',
                 features: [
                   {
-                    title: 'Real-time Monitoring',
-                    description: 'Live occupancy updates',
+                    title: 'Address Validation',
+                    description: 'Validate addresses against Google Maps API',
                   },
                   {
-                    title: 'Analytics Dashboard',
-                    description: 'Historical usage trends',
+                    title: 'Geolocation Verification',
+                    description:
+                      'Ensure accurate longitude and latitude coordinates',
                   },
                   {
-                    title: 'Capacity Alerts',
-                    description: 'Threshold notifications',
+                    title: 'Batch Processing',
+                    description: 'Process thousands of records efficiently',
+                  },
+                  {
+                    title: 'Data Cleaning',
+                    description:
+                      'Standardize address formats and correct errors',
+                  },
+                  {
+                    title: 'Reporting',
+                    description:
+                      'Generate detailed reports of validation results',
                   },
                 ],
               },
             },
           },
+          {
+            width: 1,
+            component: {
+              component: 'Quote',
+              props: {
+                text: 'This tool saved our team countless hours of manual data validation and significantly improved the accuracy of our occupancy records.',
+                author: 'Project Stakeholder',
+                variant: 'simple',
+              },
+            },
+          },
         ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'LinkGrid',
+          props: {
+            title: 'Project Resources',
+            links: [
+              {
+                title: 'GitHub Repository',
+                url: 'https://github.com/Tristen-Dillon/occupancy',
+                description: 'Source code and documentation',
+                platform: 'github',
+              },
+            ],
+            columns: 1,
+          },
+        },
       },
     ],
   },
   'firstdue-scheduling': {
     meta: {
-      title: 'Emergency Services Scheduling',
-      description: 'Mission-critical scheduling system for first responders',
-      image: '/placeholder-emergency.svg',
+      title: 'FirstDue Scheduling',
+      description:
+        'Scheduling system for a window cleaning company that my Co-Worker owns',
+      image: '/images/Scheduling.png',
       github: 'https://github.com/Tristen-Dillon/firstdue-scheduling',
     },
     sections: [
       {
         type: 'standard',
         component: {
-          component: 'ProjectShowcase',
+          component: 'Title',
           props: {
-            title: 'FirstDue Scheduling',
-            description:
-              'Reliable scheduling solution for emergency service teams',
-            technologies: [
-              'React',
-              'Java Spring',
-              'WebSockets',
-              'Redis',
-              'JUnit',
-            ],
+            text: 'FirstDue Scheduling',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Subtitle',
+          props: {
+            text: 'Reliable scheduling solution for service teams',
+            align: 'center',
+            size: 'lg',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'I developed this scheduling system for a window cleaning company owned by my colleague. The application streamlines appointment booking, staff scheduling, and service management to optimize workflows and prevent scheduling conflicts.',
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ImageWithCaption',
+          props: {
+            src: '/images/Scheduling.png',
+            alt: 'FirstDue Scheduling Interface',
+            caption: 'The scheduling calendar interface',
+            aspectRatio: '16:9',
           },
         },
       },
       {
         type: 'grid',
+        title: 'Technical Details',
         items: [
           {
             width: 1,
+            component: {
+              component: 'TechStack',
+              props: {
+                title: 'Technologies',
+                technologies: [
+                  'React',
+                  'Java Spring',
+                  'WebSockets',
+                  'Redis',
+                  'JUnit',
+                ],
+                variant: 'grid',
+                columns: 2,
+              },
+            },
+          },
+          {
+            width: 2,
             component: {
               component: 'FeatureList',
               props: {
                 title: 'Key Components',
                 features: [
-                  'Shift management',
-                  'Conflict detection',
-                  'Real-time updates',
-                  'Audit logging',
+                  {
+                    title: 'Shift Management',
+                    description:
+                      'Schedule and manage staff shifts with drag-and-drop interface',
+                  },
+                  {
+                    title: 'Conflict Detection',
+                    description:
+                      'Automatically detect and prevent scheduling conflicts',
+                  },
+                  {
+                    title: 'Real-time Updates',
+                    description:
+                      'Instant synchronization across all users via WebSockets',
+                  },
+                  {
+                    title: 'Audit Logging',
+                    description:
+                      'Comprehensive logs of all scheduling changes for accountability',
+                  },
+                  {
+                    title: 'Client Management',
+                    description:
+                      'Track client information, service history, and preferences',
+                  },
                 ],
               },
             },
           },
         ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'dots',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Quote',
+          props: {
+            text: "The scheduling system has significantly reduced our administrative overhead and virtually eliminated double-bookings. It's become an essential part of our daily operations.",
+            author: 'Business Owner',
+            variant: 'highlight',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'LinkGrid',
+          props: {
+            title: 'Project Links',
+            links: [
+              {
+                title: 'GitHub Repository',
+                url: 'https://github.com/Tristen-Dillon/firstdue-scheduling',
+                description: 'Source code and documentation',
+                platform: 'github',
+              },
+            ],
+            columns: 1,
+          },
+        },
+      },
+    ],
+  },
+
+  'component-showcase': {
+    meta: {
+      title: 'Component Showcase',
+      description: 'A demonstration of all available project components',
+      image: '/images/ComponentDisplay.png',
+      github: 'https://github.com/tristendillon/portfolio',
+    },
+    sections: [
+      {
+        type: 'standard',
+        component: {
+          component: 'Title',
+          props: {
+            text: 'Component Gallery',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: "This project demonstrates all the available components that can be used in project pages. Each component is designed to be flexible and customizable to fit various project needs. These are the components that are defined by the 'mark down' file in the portfolio project.",
+            align: 'center',
+            size: 'lg',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Text Components',
+        items: [
+          {
+            width: 1,
+            component: {
+              component: 'Title',
+              props: {
+                text: 'Title Component',
+                size: 'md',
+                withLine: true,
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'Subtitle',
+              props: {
+                text: 'Subtitle Component',
+                size: 'md',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'Description',
+              props: {
+                text: 'Description component for longer text blocks. This can be used to explain concepts or provide detailed information.',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Media Components',
+        items: [
+          {
+            width: 2,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/Portfolio.png',
+                alt: 'Portfolio screenshot',
+                caption: 'Image with caption component',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'Video',
+              props: {
+                src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                title: 'Video Component',
+                caption: 'YouTube video embedding',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Code & Tech Components',
+        items: [
+          {
+            width: 2,
+            component: {
+              component: 'CodeBlock',
+              props: {
+                filePath: 'sample.tsx',
+                language: 'tsx',
+                title: 'Code Block Component',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'TechStack',
+              props: {
+                title: 'Tech Stack Component',
+                technologies: [
+                  'React',
+                  'TypeScript',
+                  'Next.js',
+                  'Tailwind CSS',
+                  'Framer Motion',
+                ],
+                variant: 'pills',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Quote & Testimonial Components',
+        items: [
+          {
+            width: 1,
+            component: {
+              component: 'Quote',
+              props: {
+                text: "This is the Quote component. It's great for highlighting important statements or user feedback.",
+                author: 'Design Team',
+                source: 'Project Documentation',
+                variant: 'default',
+              },
+            },
+          },
+          {
+            width: 2,
+            component: {
+              component: 'Testimonial',
+              props: {
+                quote:
+                  'The Testimonial component is perfect for showcasing client or user feedback in a more prominent way.',
+                author: 'Happy Client',
+                role: 'CEO',
+                company: 'Example Corp',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'LinkGrid',
+          props: {
+            title: 'Link Components',
+            description: 'Showcase of the LinkCard and LinkGrid components',
+            links: [
+              {
+                title: 'GitHub Repository',
+                url: 'https://github.com/tristendillon/portfolio',
+                description: 'View the source code',
+                platform: 'github',
+              },
+              {
+                title: 'Live Demo',
+                url: 'https://portfolio.tdilly.com',
+                description: 'See it in action',
+                platform: 'website',
+              },
+              {
+                title: 'Documentation',
+                url: 'https://docs.example.com',
+                description: 'Read the docs',
+                platform: 'docs',
+              },
+            ],
+            columns: 3,
+            variant: 'default',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ProcessTimeline',
+          props: {
+            title: 'Process Timeline Component',
+            steps: [
+              {
+                title: 'Step 1: Planning',
+                description: 'Initial planning and requirements gathering',
+                date: 'January 2025',
+              },
+              {
+                title: 'Step 2: Design',
+                description: 'Creating wireframes and mockups',
+                date: 'February 2025',
+              },
+              {
+                title: 'Step 3: Development',
+                description: 'Building the application',
+                date: 'March 2025',
+              },
+              {
+                title: 'Step 4: Testing',
+                description: 'Quality assurance and bug fixing',
+                date: 'April 2025',
+              },
+              {
+                title: 'Step 5: Deployment',
+                description: 'Launching the project',
+                date: 'May 2025',
+              },
+            ],
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'StatsSection',
+          props: {
+            stats: [
+              {
+                label: 'Components',
+                value: 15,
+              },
+              {
+                label: 'Projects',
+                value: 10,
+              },
+              {
+                label: 'Variants',
+                value: 25,
+              },
+              {
+                label: 'Satisfaction',
+                value: 100,
+                unit: '%',
+              },
+            ],
+          },
+        },
       },
     ],
   },

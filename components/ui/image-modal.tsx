@@ -52,7 +52,10 @@ export default function ImageModal({
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="relative max-h-[90vh] max-w-[90vw] md:max-w-[80vw] overflow-hidden rounded-lg w-full h-full"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation()
+              onClose()
+            }}
           >
             <button
               className="absolute top-4 right-4 z-10 rounded-full bg-black/60 hover:bg-black/80 p-1.5 text-white transition-colors hover:cursor-pointer"

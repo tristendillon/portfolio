@@ -102,12 +102,6 @@ export default function AboutSection() {
                   }
                 />
 
-                <ExperienceItem
-                  title="Painter"
-                  company="Tyler Dillon Painting Co."
-                  period="2021 - 2023"
-                  description="Painting doesnt relate much to coding, but it was a great experience and taught me a lot about working with tenants and it was my first real job."
-                />
               </div>
             </MotionDiv>
           </div>
