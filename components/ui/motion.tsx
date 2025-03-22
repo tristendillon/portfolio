@@ -1,12 +1,11 @@
-"use client"
+'use client'
 
-import React from 'react'
-import { 
-  motion, 
-  AnimatePresence, 
+import {
+  motion,
+  AnimatePresence,
   useScroll,
-  useSpring, 
-  useTransform 
+  useSpring,
+  useTransform,
 } from 'framer-motion'
 
 export const MotionDiv = motion.div

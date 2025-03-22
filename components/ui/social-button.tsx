@@ -128,25 +128,39 @@ const SocialButton = ({
 }
 
 // Namespaced exports for each platform
-SocialButton.Github = (props: Omit<SocialButtonProps, 'platform'>) => (
-  <SocialButton platform="github" {...props} />
+SocialButton.Github = Object.assign(
+  (props: Omit<SocialButtonProps, 'platform'>) => (
+    <SocialButton platform="github" {...props} />
+  ),
+  { displayName: 'SocialButton.Github' }
 )
 
-SocialButton.LinkedIn = (props: Omit<SocialButtonProps, 'platform'>) => (
-  <SocialButton platform="linkedin" {...props} />
+SocialButton.LinkedIn = Object.assign(
+  (props: Omit<SocialButtonProps, 'platform'>) => (
+    <SocialButton platform="linkedin" {...props} />
+  ),
+  { displayName: 'SocialButton.LinkedIn' }
 )
 
-SocialButton.Twitter = (props: Omit<SocialButtonProps, 'platform'>) => (
-  <SocialButton platform="twitter" {...props} />
+SocialButton.Twitter = Object.assign(
+  (props: Omit<SocialButtonProps, 'platform'>) => (
+    <SocialButton platform="twitter" {...props} />
+  ),
+  { displayName: 'SocialButton.Twitter' }
 )
 
-SocialButton.Email = (props: Omit<SocialButtonProps, 'platform'>) => (
-  <SocialButton platform="email" {...props} />
+SocialButton.Email = Object.assign(
+  (props: Omit<SocialButtonProps, 'platform'>) => (
+    <SocialButton platform="email" {...props} />
+  ),
+  { displayName: 'SocialButton.Email' }
 )
 
-SocialButton.Website = (props: Omit<SocialButtonProps, 'platform'>) => (
-  <SocialButton platform="website" {...props} />
+SocialButton.Website = Object.assign(
+  (props: Omit<SocialButtonProps, 'platform'>) => (
+    <SocialButton platform="website" {...props} />
+  ),
+  { displayName: 'SocialButton.Website' }
 )
-
 // Default export for the component
 export default SocialButton

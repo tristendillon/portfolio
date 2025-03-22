@@ -6,12 +6,13 @@ import { FaReact, FaDocker } from 'react-icons/fa'
 import { SiTailwindcss, SiTypescript } from 'react-icons/si'
 import { RiNextjsFill } from 'react-icons/ri'
 import { FaGolang } from 'react-icons/fa6'
+import { useEffect, useRef, useState } from 'react'
 
 export default function AboutSection() {
   const myTechStack: TechStack[] = [
     { name: 'React', color: '#61DAFB', icon: <FaReact /> },
     { name: 'TypeScript', color: '#3178C6', icon: <SiTypescript /> },
-    { name: 'Next.js', color: '#000000', icon: <RiNextjsFill /> },
+    { name: 'Next.js', color: '#56b7d1', icon: <RiNextjsFill /> },
     { name: 'Tailwind CSS', color: '#06B6D4', icon: <SiTailwindcss /> },
     { name: 'Go', color: '#00ADD8', icon: <FaGolang /> },
     { name: 'Docker', color: '#2496ED', icon: <FaDocker /> },
@@ -27,13 +28,11 @@ export default function AboutSection() {
       className="py-16 bg-accent/10"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">About Me</h2>
-
         <div className="space-y-12">
           <DeveloperProfile
             name="Tristen Dillon"
             role="Developer"
-            profilePicture="/vercel.svg" // Replace with your actual profile picture
+            profilePicture="/images/headshot.jpg"
             bio="Detail-oriented developer with a strong passion for crafting seamless user experiences. Skilled at solving complex problems and transforming them into elegant, intuitive solutions that drive engagement and efficiency."
             stack={myTechStack}
             socialLinks={[
@@ -63,8 +62,8 @@ export default function AboutSection() {
               </p>
               <p>
                 When I&apos;m not coding, you can find me exploring new
-                technologies, contributing to open-source projects, or enjoying
-                outdoor activities to maintain a healthy work-life balance.
+                technologies, hanging out with my friends, playing games,
+                exploring catholicism, or at the gym.
               </p>
             </MotionDiv>
 
@@ -78,40 +77,104 @@ export default function AboutSection() {
               <h3 className="text-xl font-semibold">Experience Highlights</h3>
 
               <div className="space-y-4">
-                <div className="border-l-2 pl-4 py-1 border-primary">
-                  <h4 className="font-medium">Senior Frontend Developer</h4>
-                  <p className="text-sm text-muted-foreground">
-                    TechCorp Inc. • 2021 - Present
-                  </p>
-                  <p className="mt-1">
-                    Leading UI/UX initiatives and mentoring junior developers
-                  </p>
-                </div>
+                <ExperienceItem
+                  title="IT Intern"
+                  company="Manhattan Fire Department"
+                  period="2023 - Present"
+                  description={
+                    <p>
+                      At my job for the Manhattan Fire Department, I supported
+                      various technology projects and initiatives.
+                      <br /> <br /> Developed and maintained FileMaker Pro
+                      databases, including a custom email client utilizing
+                      Microsoft email APIs for managing inbox and sent items.
+                      <br /> <br /> Designed and implemented NextJS websites to
+                      support property maintenance inspections and facilitate
+                      FileMaker Pro data integration. <br /> <br /> Created an
+                      internal clothing store website for the department,
+                      enabling administrators to manage clothing inventory,
+                      process orders, and oversee user accounts. <br /> <br />{' '}
+                      Helped the migration from one incident reporting service
+                      to another, including parsing legacy data, generating
+                      reports, scripting for data uniformity, and coordinating
+                      with the transfer team for a seamless transition.
+                    </p>
+                  }
+                />
 
-                <div className="border-l-2 pl-4 py-1 border-primary">
-                  <h4 className="font-medium">Full Stack Engineer</h4>
-                  <p className="text-sm text-muted-foreground">
-                    WebSolutions • 2018 - 2021
-                  </p>
-                  <p className="mt-1">
-                    Developed scalable web applications with modern frameworks
-                  </p>
-                </div>
-
-                <div className="border-l-2 pl-4 py-1 border-primary">
-                  <h4 className="font-medium">Junior Developer</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Digital Agency • 2016 - 2018
-                  </p>
-                  <p className="mt-1">
-                    Created responsive websites and e-commerce solutions
-                  </p>
-                </div>
+                <ExperienceItem
+                  title="Painter"
+                  company="Tyler Dillon Painting Co."
+                  period="2021 - 2023"
+                  description="Painting doesnt relate much to coding, but it was a great experience and taught me a lot about working with tenants and it was my first real job."
+                />
               </div>
             </MotionDiv>
           </div>
         </div>
       </div>
     </MotionSection>
+  )
+}
+
+interface ExperienceItemProps {
+  title: string
+  company: string
+  period: string
+  description: string | React.ReactNode
+}
+
+function ExperienceItem({
+  title,
+  company,
+  period,
+  description,
+}: ExperienceItemProps) {
+  const [expanded, setExpanded] = useState(false)
+  const [showButton, setShowButton] = useState(false)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  const MAX_HEIGHT = 95
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setShowButton(contentRef.current.scrollHeight > MAX_HEIGHT)
+    }
+  }, [description])
+
+  return (
+    <div className="border-l-2 pl-4 py-1 border-primary">
+      <h4 className="font-medium">{title}</h4>
+      <p className="text-sm text-muted-foreground">
+        {company} • {period}
+      </p>
+
+      <MotionDiv
+        animate={{
+          height: expanded ? 'auto' : showButton ? `${MAX_HEIGHT}px` : 'auto',
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className={`overflow-hidden relative ${
+          !expanded && showButton ? 'mask-bottom' : ''
+        }`}
+      >
+        <div ref={contentRef}>
+          {typeof description === 'string' ? (
+            <p className="mt-1">{description}</p>
+          ) : (
+            description
+          )}
+        </div>
+      </MotionDiv>
+
+      {showButton && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="text-muted-foreground text-sm font-medium mt-2 hover:underline focus:outline-none hover:cursor-pointer"
+        >
+          {expanded ? 'Show Less' : 'Read More'}
+        </button>
+      )}
+    </div>
   )
 }

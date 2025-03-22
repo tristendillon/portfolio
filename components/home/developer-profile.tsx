@@ -1,7 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { MotionDiv, Card, CardContent, SocialButton, SocialPlatform } from '@/components/ui'
+import {
+  MotionDiv,
+  Card,
+  CardContent,
+  SocialButton,
+  SocialPlatform,
+} from '@/components/ui'
 
 interface SocialLink {
   platform: SocialPlatform
@@ -58,6 +64,8 @@ export default function DeveloperProfile({
                   fill
                   className="object-cover"
                   sizes="112px"
+                  quality={100}
+                  priority
                 />
               </MotionDiv>
 
