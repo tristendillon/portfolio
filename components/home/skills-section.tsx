@@ -118,7 +118,7 @@ export default function SkillsSection() {
               />
               <Skill
                 title="Team Collaboration"
-                description="Proven ability to work effectively in agile teams, mentor junior developers, and coordinate with cross-functional teams."
+                description="Proven ability to work effectively in agile team and coordinate with cross-functional teams."
                 delay={0.2}
               />
               <Skill
