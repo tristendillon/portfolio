@@ -20,7 +20,6 @@ export default function CodeBlock({
   filePath,
   language,
   title,
-  index,
   maxHeight = 300,
   initiallyExpanded = false,
 }: CodeBlockProps) {
@@ -53,7 +52,7 @@ export default function CodeBlock({
 
         const data = await response.json()
         setCode(data.code)
-        
+
         // We'll check if the content needs truncation after it's rendered
       } catch (err) {
         console.error('Error fetching code file:', err)
@@ -91,11 +90,15 @@ export default function CodeBlock({
           </span>
         </div>
       </div>
-      
-      <div 
+
+      <div
         ref={codeContainerRef}
-        className={`relative ${shouldTruncate && !isExpanded ? `max-h-[${maxHeight}px]` : ''} overflow-hidden`}
-        style={{ maxHeight: shouldTruncate && !isExpanded ? maxHeight : 'none' }}
+        className={`relative ${
+          shouldTruncate && !isExpanded ? `max-h-[${maxHeight}px]` : ''
+        } overflow-hidden`}
+        style={{
+          maxHeight: shouldTruncate && !isExpanded ? maxHeight : 'none',
+        }}
       >
         {isLoading ? (
           <div className="p-4 text-sm">Loading code...</div>
@@ -111,16 +114,16 @@ export default function CodeBlock({
             >
               {code}
             </SyntaxHighlighter>
-            
+
             {shouldTruncate && !isExpanded && (
               <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent pointer-events-none" />
             )}
           </>
         )}
       </div>
-      
+
       {shouldTruncate && (
-        <button 
+        <button
           onClick={toggleExpand}
           className="w-full flex items-center justify-center py-2 text-sm font-medium border-t hover:bg-muted transition-colors"
           aria-expanded={isExpanded}

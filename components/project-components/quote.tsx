@@ -20,7 +20,7 @@ export default function Quote({
   source,
   variant = 'default',
   className,
-  index
+  index,
 }: QuoteProps) {
   return (
     <MotionDiv
@@ -34,16 +34,20 @@ export default function Quote({
         className
       )}
     >
-      {variant === 'simple' && <QuoteIcon className="h-8 w-8 text-primary/40 mb-2" />}
-      
-      <blockquote className={cn(
-        'text-lg italic',
-        variant === 'highlight' && 'text-primary-foreground',
-        variant !== 'highlight' && 'text-muted-foreground'
-      )}>
-        "{text}"
+      {variant === 'simple' && (
+        <QuoteIcon className="h-8 w-8 text-primary/40 mb-2" />
+      )}
+
+      <blockquote
+        className={cn(
+          'text-lg italic',
+          variant === 'highlight' && 'text-primary-foreground',
+          variant !== 'highlight' && 'text-muted-foreground'
+        )}
+      >
+        &ldquo;{text}&ldquo;
       </blockquote>
-      
+
       {(author || source) && (
         <footer className="mt-2 text-sm">
           {author && <span className="font-medium">{author}</span>}
