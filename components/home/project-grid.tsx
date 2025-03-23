@@ -30,14 +30,19 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
     // Clear the hash from the URL when loading more projects
     if (window.location.hash) {
       try {
-        window.history.pushState(
-          '',
-          document.title,
-          window.location.pathname + window.location.search
-        )
+        // Use replaceState instead of pushState for better iOS compatibility
+        try {
+          window.history.replaceState(
+            '',
+            '',
+            window.location.pathname + window.location.search
+          )
+        } catch (e) {
+          // Fallback for environments where history API is restricted
+          console.log('Could not update URL history')
+        }
       } catch (error) {
         console.error('Error clearing hash:', error)
-        router.replace(window.location.pathname + window.location.search)
       }
     }
 
