@@ -37,7 +37,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
           )
         } catch (e) {
           // Fallback for environments where history API is restricted
-          console.log('Could not update URL history')
+          console.log('Could not update URL history', e)
         }
       } catch (error) {
         console.error('Error clearing hash:', error)
