@@ -12,7 +12,6 @@ import {
   Button,
   SocialButton,
 } from '@/components/ui'
-import { useRouter } from 'next/navigation'
 
 interface ProjectGridProps {
   projects: Record<string, { meta: ProjectMeta }>
@@ -25,7 +24,6 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
   const projectEntries = Object.entries(projects)
   const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_LOAD)
   const hasMoreProjects = visibleCount < projectEntries.length
-  const router = useRouter()
   const handleLoadMore = () => {
     // Clear the hash from the URL when loading more projects
     if (window.location.hash) {
