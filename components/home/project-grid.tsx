@@ -12,6 +12,7 @@ import {
   Button,
   SocialButton,
 } from '@/components/ui'
+import { useRouter } from 'next/navigation'
 
 interface ProjectGridProps {
   projects: Record<string, { meta: ProjectMeta }>
@@ -24,15 +25,20 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
   const projectEntries = Object.entries(projects)
   const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_LOAD)
   const hasMoreProjects = visibleCount < projectEntries.length
-
+  const router = useRouter()
   const handleLoadMore = () => {
     // Clear the hash from the URL when loading more projects
     if (window.location.hash) {
-      window.history.pushState(
-        '',
-        document.title,
-        window.location.pathname + window.location.search
-      )
+      try {
+        window.history.pushState(
+          '',
+          document.title,
+          window.location.pathname + window.location.search
+        )
+      } catch (error) {
+        console.error('Error clearing hash:', error)
+        router.push(window.location.pathname + window.location.search)
+      }
     }
 
     setVisibleCount((prev) => Math.min(prev + 3, projectEntries.length))
@@ -58,11 +64,22 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
           // Set visible count to show the project
           setVisibleCount((prev) => Math.max(prev, requiredLoadCount))
 
+          // Disable scrolling while we prepare to scroll to the project
+          document.body.style.overflow = 'hidden'
+
           // Scroll to the project after a small delay to ensure rendering
           setTimeout(() => {
             const projectRef = projectRefs.current[projectSlug]
             if (projectRef) {
               projectRef.scrollIntoView({ behavior: 'smooth', block: 'center' })
+
+              // Re-enable scrolling after the scroll animation completes
+              setTimeout(() => {
+                document.body.style.overflow = ''
+              }, 800) // Allow enough time for the smooth scroll to complete
+            } else {
+              // Re-enable scrolling if project ref not found
+              document.body.style.overflow = ''
             }
           }, 300)
         }
@@ -74,7 +91,11 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
 
     // Add event listener for hash changes
     window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange)
+      // Ensure scrolling is re-enabled when component unmounts
+      document.body.style.overflow = ''
+    }
   }, [projectEntries])
 
   const visibleProjects = projectEntries.slice(0, visibleCount)
