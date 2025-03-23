@@ -37,7 +37,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
         )
       } catch (error) {
         console.error('Error clearing hash:', error)
-        router.push(window.location.pathname + window.location.search)
+        router.replace(window.location.pathname + window.location.search)
       }
     }
 
