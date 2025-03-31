@@ -46,6 +46,7 @@ export type Projects = Record<
   string,
   {
     meta: ProjectMeta
+    env: 'development' | 'production'
     sections: ProjectSection[]
   }
 >

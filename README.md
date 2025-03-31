@@ -47,17 +47,17 @@ Projects are defined in `lib/projects.tsx` using a structured schema:
 
 ```typescript
 const projects: Projects = {
-  "project-slug": {
+  'project-slug': {
     meta: {
-      title: "Project Title",
-      description: "Short project description",
-      image: "/images/project.png",
-      github: "https://github.com/username/project",
+      title: 'Project Title',
+      description: 'Short project description',
+      image: '/images/project.png',
+      github: 'https://github.com/username/project',
     },
     sections: [
       // Project sections go here
-    ]
-  }
+    ],
+  },
 }
 ```
 
@@ -122,16 +122,19 @@ Allows arranging multiple components in a grid:
 The system includes specialized components for project pages:
 
 #### Text Components
+
 - `Title` - Section titles with configurable size and alignment
 - `Subtitle` - Secondary headings
 - `Description` - Paragraph text with formatting options
 
 #### Media Components
+
 - `ImageShowcase` - Gallery of multiple images
 - `ImageWithCaption` - Single image with caption
 - `Video` - Embed video content
 
 #### Content Components
+
 - `CodeBlock` - Syntax-highlighted code snippets
 - `FeatureList` - List of features with check icons
 - `TechStack` - Display technologies used in the project
@@ -144,18 +147,19 @@ The system includes specialized components for project pages:
 - `StatsSection` - Display statistics with labels
 
 #### Layout Components
+
 - `Divider` - Visual separator
 - `GridSection` - For arranging components in a grid
 
 ### Example Project Definition
 
-See `public/code/example-project.tsx` for a complete example of a project definition using all available components.
+See `public/code/project-definition.ts` for an example project definition.
 
 ## Code Style Guidelines
 
 - **TypeScript**: Use strict mode with proper type definitions
 - **Components**: Follow shadcn/ui patterns with New York style
-- **Imports**: Use path aliases (@/*) and organize by category
+- **Imports**: Use path aliases (@/\*) and organize by category
 - **Styling**: Use Tailwind CSS with component-specific classes
 
 ## Deploy on Vercel

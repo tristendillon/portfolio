@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
+import { Download, Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -18,13 +18,11 @@ export default function Navbar() {
   const [isScrolling, setIsScrolling] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Set active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
       if (!isScrolling) {
         const sections = document.querySelectorAll('section[id]')
 
-        // Find the section that is most in view
         let current = ''
         let maxVisiblePercentage = 0
 
@@ -33,7 +31,6 @@ export default function Navbar() {
           const sectionHeight = section.getBoundingClientRect().height
           const viewportHeight = window.innerHeight
 
-          // Calculate how much of the section is visible
           const visibleHeight =
             Math.min(viewportHeight, sectionTop + sectionHeight) -
             Math.max(0, sectionTop)
@@ -56,7 +53,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [isScrolling])
 
-  // Handle smooth scrolling when clicking nav items
   const scrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -87,7 +83,6 @@ export default function Navbar() {
           <span className="text-xl font-bold">TD</span>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <a
@@ -107,9 +102,20 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <Button
+            variant="outline"
+            size="sm"
+            className="hidden md:flex items-center gap-1"
+            asChild
+          >
+            <a href="/Resume.pdf" download>
+              <Download className="h-4 w-4" />
+              <span>Resume</span>
+            </a>
+          </Button>
+
           <ThemeToggle />
 
-          {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
@@ -126,7 +132,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <nav className="md:hidden border-t p-4 bg-background animate-in slide-in-from-top-5">
           <div className="grid gap-2">
@@ -145,6 +150,15 @@ export default function Navbar() {
                 {item.name}
               </a>
             ))}
+
+            <a
+              href="/Resume.pdf"
+              download
+              className="flex items-center gap-2 p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent/50"
+            >
+              <Download className="h-4 w-4" />
+              Resume
+            </a>
           </div>
         </nav>
       )}

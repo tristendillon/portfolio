@@ -7,6 +7,7 @@ import { SiTailwindcss } from 'react-icons/si'
 
 export const projects: Projects = {
   'pick-pulse': {
+    env: 'production',
     meta: {
       title: 'PickPulse',
       description: 'Draftboard app for ESPN Fantasy Football',
@@ -256,6 +257,7 @@ export const projects: Projects = {
     ],
   },
   myplanit: {
+    env: 'production',
     meta: {
       title: 'MyPlanit',
       description: 'Collaborative project planning project (Hackathon Winner)',
@@ -464,6 +466,7 @@ export const projects: Projects = {
     ],
   },
   portfolio: {
+    env: 'production',
     meta: {
       title: 'Developer Portfolio',
       description: 'Interactive showcase of technical projects and skills',
@@ -608,6 +611,7 @@ export const projects: Projects = {
     ],
   },
   'active911-integration': {
+    env: 'production',
     meta: {
       title: 'Active911 Integration',
       description: 'Custom integration for emergency response systems',
@@ -652,7 +656,7 @@ export const projects: Projects = {
           props: {
             src: '/images/AlertDashboard.png',
             alt: 'Alert Dashboard',
-            caption: 'Emergency response alert dashboard',
+            caption: 'New Alert popup on the dashboard, this is from the non-public dashboard, thats why the image has some blurring and editing.',
             aspectRatio: '16:9',
           },
         },
@@ -715,6 +719,78 @@ export const projects: Projects = {
       {
         type: 'standard',
         component: {
+          component: 'Subtitle',
+          props: {
+            text: 'Public RSS Feed',
+            size: 'lg',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'The live public RSS feed for the all alerts for the Manhattan, KS area. The feed is updated via websocket. Since the feed is public, I added a simple authentication layer to the websocket to redact sensitive information, such as the caller\'s name and address, the call details from dispatch, etc.',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Embed',
+          props: {
+            src: 'https://www.alertdashboard.com/rssfeed/center',
+            aspectRatio: '16:9',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Subtitle',
+          props: {
+            text: 'System Components',
+            size: 'lg',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'grid',
+        items: [
+          {
+            width: 1,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/AlertDashboardLogs.PNG',
+                alt: 'Alert Dashboard Logs',
+                caption: 'Advanced logging system for tracking alerts and system events',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+          {
+            width: 2,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/PublicAlertDashboard.PNG',
+                alt: 'Public Alert Dashboard',
+                caption: 'Public dashboard showing past alerts, current weather conditions, and active weather alerts for the region',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
           component: 'Divider',
           props: {
             type: 'line',
@@ -737,19 +813,26 @@ export const projects: Projects = {
                 platform: 'github',
               },
               {
+                title: 'Public Dashboard',
+                url: 'https://alertdashboard.com/public/all',
+                description: 'View the public dashboard',
+                platform: 'website',
+              },
+              {
                 title: 'Active911',
                 url: 'https://active911.com/',
                 description: 'Active911 official website',
                 platform: 'website',
               },
             ],
-            columns: 2,
+            columns: 3,
           },
         },
       },
     ],
   },
   occupancy: {
+    env: 'production',
     meta: {
       title: 'Occupancy Validation Tool',
       description:
@@ -876,6 +959,7 @@ export const projects: Projects = {
     ],
   },
   'firstdue-scheduling': {
+    env: 'production',
     meta: {
       title: 'FirstDue Scheduling',
       description:
@@ -1000,8 +1084,657 @@ export const projects: Projects = {
       },
     ],
   },
-
+  'filemaker-outlook': {
+    env: 'development',
+    meta: {
+      title: 'FileMaker Outlook Integration',
+      description:
+        'A tool to send emails and review emails from Outlook in FileMaker',
+      image: '/images/OutlookDraft.png',
+      technologies: ['FileMaker', 'Outlook API'],
+    },
+    sections: [
+      {
+        type: 'standard',
+        component: {
+          component: 'Title',
+          props: {
+            text: 'FileMaker Outlook Integration',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: "At my workplace we were having issues with emailing using FileMaker's built in email script. So I made a custom client that sent emails with the Outlook API through FileMaker.",
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ImageWithCaption',
+          props: {
+            src: '/images/OutlookSentBlurred.png',
+            alt: 'Outlook Sent Email',
+            caption: 'The sent mail interface',
+            aspectRatio: '16:9',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        items: [
+          {
+            width: 2,
+            component: {
+              component: 'CodeBlock',
+              props: {
+                filePath: 'outlook-script.txt',
+                language: 'FMP12',
+                title: 'Outlook Script',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'Description',
+              props: {
+                text: 'This is the script that starts the process of sending the email. It opens the outlook application and creates a new email. It has the ability to add attachments to the email, set the subject, and body of the email, etc.',
+              },
+            },
+          },
+          {
+            width: 3,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/AttachmentsBlurred.png',
+                alt: 'Outlook Attachments',
+                caption: 'Able to see attachments in the email',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'Below are some screenshots of the application in action, the first image shows off the drafter interface, the second image shows off that attachments that can be added to the email, and the third image shows off the custom email typing interface similar to outlook. (Click the images to enlarge)',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ImageShowcase',
+          props: {
+            images: [
+              '/images/OutlookDraft.png',
+              '/images/DraftWithAttachments.png',
+              '/images/DraftWithEmailsBlurred.png',
+            ],
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        items: [
+          {
+            width: 1,
+            component: {
+              component: 'Description',
+              props: {
+                text: 'The settings interface allows you to configure the email settings, such as the reply email address, your name, the header attached to each email. There was also an admin interface that allowed the admin (me) to manage the environment variables for the application, such as the tenant id, client id, client secret, etc.',
+              },
+            },
+          },
+          {
+            width: 2,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/OutlookSettingsBlurred.png',
+                alt: 'Outlook Settings',
+                caption: 'The settings interface',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+  'filemaker-review-dashboard': {
+    env: 'development',
+    meta: {
+      title: 'FileMaker Review Dashboard',
+      description:
+        'A dashboard for managing and analyzing permit applications in FileMaker.',
+      image: '/images/Review.png',
+      technologies: ['FileMaker'],
+    },
+    sections: [
+      {
+        type: 'standard',
+        component: {
+          component: 'Title',
+          props: {
+            text: 'FileMaker Review Dashboard',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Subtitle',
+          props: {
+            text: 'A dashboard for managing and analyzing permit applications in FileMaker.',
+            align: 'center',
+            size: 'lg',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        items: [
+          {
+            width: 1,
+            component: {
+              component: 'Description',
+              props: {
+                text: 'One of the main problems with the previous way of reviewing applications was that it was very time consuming, there was a LOT of manual input which was slow and caused human error. So I made an integration and dashboard that allows the admin to review applications, and quickly edit the permit application before they get put in our system..',
+              },
+            },
+          },
+          {
+            width: 2,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/Review.png',
+                alt: 'FileMaker Review Dashboard',
+                caption: 'The review dashboard',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'muted',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'There is not much more to say about this project, it was a simple integration. It was a fun project to work on, and I learned a lot from it. It was my first big FileMaker project, and I was able to learn a lot about the platform and how to use it to.',
+          },
+        },
+      },
+    ],
+  },
+  storemfd: {
+    env: 'development',
+    meta: {
+      title: 'StoreMFD',
+      description: 'An internal clothing store for my workplace',
+      image: '/images/StoreMFD.webp',
+      technologies: [
+        'NextJS',
+        'TailwindCSS',
+        'TypeScript',
+        'Framer Motion',
+        'Payload',
+      ],
+    },
+    sections: [
+      {
+        type: 'standard',
+        component: {
+          component: 'Title',
+          props: {
+            text: 'StoreMFD',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'StoreMFD is an internal e-commerce platform I developed for the Manhattan Fire Department to streamline the process of ordering uniform items and merchandise. This solution replaced an inefficient paper-based system with a modern digital storefront and inventory management system.',
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'TechStack',
+          props: {
+            title: 'Built With',
+            technologies: [
+              'NextJS',
+              'TypeScript',
+              'TailwindCSS',
+              'Framer Motion',
+              'PayloadCMS',
+              'MongoDB',
+            ],
+            variant: 'pills',
+            columns: 3,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Core Features',
+        items: [
+          {
+            width: 2,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/StoreMFD.webp',
+                alt: 'StoreMFD application screenshot',
+                caption: 'StoreMFD store interface',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'FeatureList',
+              props: {
+                title: 'Key Features',
+                features: [
+                  {
+                    title: 'User Authentication',
+                    description:
+                      'Azure AD integration for secure department login',
+                  },
+                  {
+                    title: 'Role-Based Access',
+                    description:
+                      'Different permissions for administrators and standard users',
+                  },
+                  {
+                    title: 'Inventory Management',
+                    description:
+                      'Real-time tracking of available items and sizes',
+                  },
+                  {
+                    title: 'Order Processing',
+                    description: 'Automated workflows for order fulfillment',
+                  },
+                  {
+                    title: 'Reporting Dashboard',
+                    description:
+                      'Analytics for purchasing trends and inventory status',
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: "The system integrates with the department's budget tracking system to ensure all purchases are properly accounted for and stay within allocated funds. It also features an approval workflow for certain items that require authorization from superiors.",
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'StatsSection',
+          props: {
+            stats: [
+              {
+                label: 'Annual Orders',
+                value: 1200,
+                unit: '+',
+              },
+              {
+                label: 'Processing Time Reduction',
+                value: 75,
+                unit: '%',
+              },
+              {
+                label: 'User Satisfaction',
+                value: 98,
+                unit: '%',
+              },
+              {
+                label: 'Inventory Accuracy',
+                value: 99.5,
+                unit: '%',
+              },
+            ],
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'ProcessTimeline',
+          props: {
+            title: 'Project Timeline',
+            steps: [
+              {
+                title: 'Requirements Gathering',
+                description:
+                  'Interviewed stakeholders to understand needs and pain points',
+                date: 'January 2025',
+              },
+              {
+                title: 'Design & Prototyping',
+                description:
+                  'Created wireframes and iterative prototypes with user testing',
+                date: 'February 2025',
+              },
+              {
+                title: 'Development',
+                description:
+                  'Built the application using Next.js and PayloadCMS',
+                date: 'March-April 2025',
+              },
+              {
+                title: 'Testing & Refinement',
+                description:
+                  'Conducted user acceptance testing and implemented feedback',
+                date: 'May 2025',
+              },
+              {
+                title: 'Deployment & Training',
+                description:
+                  'Launched the platform and trained staff on its usage',
+                date: 'June 2025',
+              },
+            ],
+          },
+        },
+      },
+    ],
+  },
+  'mfd-sharepoint': {
+    env: 'development',
+    meta: {
+      title: 'MFD Sharepoint',
+      description: "Sharepoint site for the MFD's department communication",
+      image: '/images/Collections.png',
+      technologies: ['Sharepoint', 'Power Automate', 'Power BI', 'PowerApps'],
+    },
+    sections: [
+      {
+        type: 'standard',
+        component: {
+          component: 'Title',
+          props: {
+            text: 'MFD Sharepoint Integration',
+            size: 'xl',
+            align: 'center',
+            withLine: true,
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Subtitle',
+          props: {
+            text: 'Modern Digital Workspace for Emergency Services',
+            align: 'center',
+            size: 'lg',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Description',
+          props: {
+            text: 'I developed a comprehensive SharePoint solution for the Manhattan Fire Department to centralize communications, streamline document management, and automate workflows. This project transformed how information is shared across the department and significantly improved operational efficiency.',
+            align: 'center',
+            size: 'md',
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'TechStack',
+          props: {
+            title: 'Technologies Used',
+            technologies: [
+              'SharePoint Online',
+              'Power Automate',
+              'Power BI',
+              'PowerApps',
+              'Microsoft Graph API',
+              'Azure Functions',
+            ],
+            variant: 'pills',
+            columns: 3,
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Solution Components',
+        items: [
+          {
+            width: 1,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/Collections.png',
+                alt: 'SharePoint Document Collections',
+                caption: 'Document management system',
+                aspectRatio: '4:3',
+              },
+            },
+          },
+          {
+            width: 2,
+            component: {
+              component: 'FeatureList',
+              props: {
+                title: 'Key Implementations',
+                features: [
+                  {
+                    title: 'Command Dashboard',
+                    description:
+                      'Real-time information hub for department leadership',
+                  },
+                  {
+                    title: 'Document Management System',
+                    description:
+                      'Centralized repository with version control and approval workflows',
+                  },
+                  {
+                    title: 'Automated Workflows',
+                    description:
+                      'Equipment maintenance scheduling and inspection tracking',
+                  },
+                  {
+                    title: 'Training Portal',
+                    description: 'Course management and certification tracking',
+                  },
+                  {
+                    title: 'Emergency Response Coordination',
+                    description:
+                      'Real-time incident management and resource allocation',
+                  },
+                  {
+                    title: 'Analytics Dashboard',
+                    description: 'Performance metrics and operational insights',
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Divider',
+          props: {
+            type: 'line',
+            color: 'primary',
+            spacing: 'md',
+          },
+        },
+      },
+      {
+        type: 'grid',
+        title: 'Technical Accomplishments',
+        items: [
+          {
+            width: 2,
+            component: {
+              component: 'Description',
+              props: {
+                text: 'The SharePoint implementation included custom PowerApps that integrated with department systems including the Computer Aided Dispatch (CAD) system. I created workflows with Power Automate to streamline approval processes and notify staff about critical updates. The solution also featured Power BI dashboards that visualized response times, equipment status, and training compliance.',
+              },
+            },
+          },
+          {
+            width: 1,
+            component: {
+              component: 'ImageWithCaption',
+              props: {
+                src: '/images/AdminDashboard.png',
+                alt: 'Admin Dashboard',
+                caption: 'Administrative control panel',
+                aspectRatio: '16:9',
+              },
+            },
+          },
+        ],
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'StatsSection',
+          props: {
+            stats: [
+              {
+                label: 'Document Search Time Reduction',
+                value: 80,
+                unit: '%',
+              },
+              {
+                label: 'Administrative Hours Saved Weekly',
+                value: 25,
+                unit: 'hrs',
+              },
+              {
+                label: 'Department Staff Using Platform',
+                value: 98,
+                unit: '%',
+              },
+              {
+                label: 'Approval Process Time Reduction',
+                value: 65,
+                unit: '%',
+              },
+            ],
+          },
+        },
+      },
+      {
+        type: 'standard',
+        component: {
+          component: 'Quote',
+          props: {
+            text: 'The SharePoint integration has revolutionized how we share information and coordinate operations. What used to take days now happens in minutes.',
+            author: 'Fire Chief',
+            source: 'Project Feedback',
+            variant: 'default',
+          },
+        },
+      },
+    ],
+  },
   'component-showcase': {
+    env: 'production',
     meta: {
       title: 'Component Showcase',
       description: 'A demonstration of all available project components',

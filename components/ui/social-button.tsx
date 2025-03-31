@@ -110,8 +110,7 @@ const SocialButton = ({
   return (
     <MotionDiv
       initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
       whileHover={{ y: -5 }}
       className="inline-block"

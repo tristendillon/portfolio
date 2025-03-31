@@ -14,74 +14,67 @@ import {
 } from '@/components/ui'
 
 interface ProjectGridProps {
-  projects: Record<string, { meta: ProjectMeta }>
+  projects: Record<string, { meta: ProjectMeta; env: string }>
 }
 
 const PROJECTS_PER_LOAD = 6
 
 export default function ProjectGrid({ projects }: ProjectGridProps) {
   const projectRefs = useRef<Record<string, HTMLDivElement | null>>({})
-  const projectEntries = Object.entries(projects)
   const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_LOAD)
-  const hasMoreProjects = visibleCount < projectEntries.length
+
+  // Filter projects based on environment
+  const isProduction = process.env.NODE_ENV === 'production'
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const filteredProjects = Object.entries(projects).filter(([_, project]) =>
+    !isProduction || project.env === 'production'
+  )
+
+  const hasMoreProjects = visibleCount < filteredProjects.length
   const handleLoadMore = () => {
-    // Clear the hash from the URL when loading more projects
     if (window.location.hash) {
       try {
-        // Use replaceState instead of pushState for better iOS compatibility
-        try {
-          window.history.replaceState(
-            '',
-            '',
-            window.location.pathname + window.location.search
-          )
-        } catch (e) {
-          // Fallback for environments where history API is restricted
-          console.log('Could not update URL history', e)
-        }
+        window.history.replaceState(
+          '',
+          '',
+          window.location.pathname + window.location.search
+        )
       } catch (error) {
         console.error('Error clearing hash:', error)
       }
     }
-
-    setVisibleCount((prev) => Math.min(prev + 3, projectEntries.length))
+    setVisibleCount((prev) => Math.min(prev + 3, filteredProjects.length))
   }
 
-  // Find project from hash and load/scroll to it
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '')
 
       if (hash && hash.startsWith('project-')) {
         const projectSlug = hash.replace('project-', '')
-        const projectIndex = projectEntries.findIndex(
+        const projectIndex = filteredProjects.findIndex(
           ([slug]) => slug === projectSlug
         )
 
         if (projectIndex >= 0) {
-          // Calculate how many items we need to load to show this project
           const requiredLoadCount =
             Math.ceil((projectIndex + 1) / PROJECTS_PER_LOAD) *
             PROJECTS_PER_LOAD
 
-          // Set visible count to show the project
           setVisibleCount((prev) => Math.max(prev, requiredLoadCount))
 
-          // Disable scrolling while we prepare to scroll to the project
           document.body.style.overflow = 'hidden'
 
-          // Scroll to the project after a small delay to ensure rendering
           setTimeout(() => {
             const projectRef = projectRefs.current[projectSlug]
             if (projectRef) {
               projectRef.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
-              // Re-enable scrolling after the scroll animation completes
               setTimeout(() => {
                 document.body.style.overflow = ''
-              }, 800) // Allow enough time for the smooth scroll to complete
+              }, 800)
             } else {
-              // Re-enable scrolling if project ref not found
               document.body.style.overflow = ''
             }
           }, 300)
@@ -89,19 +82,16 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
       }
     }
 
-    // Handle hash on initial load
     handleHashChange()
 
-    // Add event listener for hash changes
     window.addEventListener('hashchange', handleHashChange)
     return () => {
       window.removeEventListener('hashchange', handleHashChange)
-      // Ensure scrolling is re-enabled when component unmounts
       document.body.style.overflow = ''
     }
-  }, [projectEntries])
+  }, [filteredProjects])
 
-  const visibleProjects = projectEntries.slice(0, visibleCount)
+  const visibleProjects = filteredProjects.slice(0, visibleCount)
 
   return (
     <div className="space-y-8">

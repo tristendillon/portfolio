@@ -18,6 +18,7 @@ import {
   LinkCard,
   LinkGrid,
   ImageWithCaption,
+  Embed,
 } from '@/components/project-components'
 
 const projectComponents = {
@@ -40,6 +41,7 @@ const projectComponents = {
   LinkCard,
   LinkGrid,
   ImageWithCaption,
+  Embed,
 }
 
 export default projectComponents

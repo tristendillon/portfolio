@@ -1,0 +1,39 @@
+Set Variable [ $fileName; Value:GetContainerAttribute ( OutlookExample::attachment; "fileName" )]
+Set Variable [ $attachmentPath; Value:Get ( TemporaryPath ) & "Outlook/" & $fileName]
+Export Field Contents [ OutlookExample::attachment; "$attachmentPath"; Create folders:Yes]
+
+#EDIT SUPPORTING JSON VARIABLES IN HERE!
+
+Set Variable [ $json; Value:Let (
+  [
+    // EXPAND CALCULATION FIELD WINDOW TO BE LARGE ENOUGHT TO READ INLINE COMMENTS!
+    // THIS IS A COMMENT
+    // EDIT THESE VALUES
+    // YOU CAN REMOVE EVERYTHING AFTER A DOUBLE SLASH!
+
+    recipients = "tristen.dillon@cityofmhk.com;emery@cityofmhk.com"; // CANNOT BE NULL!
+    ccRecipients = "tristen.dillon@cityofmhk.com;emery@cityofmhk.com"; // CAN BE NULL!
+    body = "This is a new draft message.¶These are line-breaks.¶Edit as you wish!"; // CANNOT BE NULL
+    subject = "This is the subject content!"; // CANNOT BE NULL OR GREATER THAN 250 CHARACTERS
+    attachments = $attachmentPath; // THIS NEEDS TO BE IN THE FORM OF A LIST, REFRENCING THE FILES!
+
+    // YOU NEED TO EXPORT THE CONTENTS OF A CALCULATION FIELD THEN REFERENCE THE EXPORT FILE!
+
+    // EXAMPLE OF VALID ATTACHMENTS FIELD:
+
+    // "filewin:/C:/Users/tristen.dillon/documents/test.txt ¶ filewin:/C/Users/tristen.dillon/test2.txt"
+    // "filewin:/C:/Users/tristen.dillon/documents/test.txt
+
+    // EXAMPLE OF INVALID ATTACHMENTS FIELD:
+
+    // "filewin:/C:/Users/tristen.dillon/documents/test.txt filewin:/C/Users/tristen.dillon/test2.txt"
+    // "SomeTable::CalculationField"
+
+    // DO NOT EDIT THIS VALUE
+    json = JSONSetElement ( ""; ["recipients"; recipients; JSONString]; ["ccRecipients"; ccRecipients; JSONString]; ["body"; body;
+    JSONString]; ["subject"; subject; JSONString]; ["attachments"; attachments; JSONString] )
+  ];
+  json
+) ]
+
+ Perform Script [ "StartNewDraftFromExternal" from file: "Outlook"; Parameter: $json ]

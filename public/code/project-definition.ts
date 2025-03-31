@@ -3,6 +3,7 @@ import { Projects } from '@/lib/types'
 // Example project definition showcasing the component-based structure
 export const projects: Projects = {
   'my-project': {
+    env: 'development', // This is a project only shown in the development environment
     meta: {
       title: 'My Amazing Project',
       description: 'A showcase of my technical skills and creativity',

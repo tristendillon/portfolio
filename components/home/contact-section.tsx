@@ -1,41 +1,60 @@
 'use client'
 
 import { useState } from 'react'
-import { MotionDiv, MotionP, MotionSection, Button, SocialButton } from '@/components/ui'
+import {
+  MotionDiv,
+  MotionP,
+  MotionSection,
+  Button,
+  SocialButton,
+} from '@/components/ui'
 import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer'
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   })
 
   const [formStatus, setFormStatus] = useState({
     loading: false,
     success: false,
     error: false,
-    message: ''
+    message: '',
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.15,
+    triggerOnce: true,
+  })
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [id]: value
+      [id]: value,
     }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
       setFormStatus({
         loading: false,
         success: false,
         error: true,
-        message: 'Please fill out all fields'
+        message: 'Please fill out all fields',
       })
       return
     }
@@ -46,7 +65,7 @@ export default function ContactSection() {
         loading: false,
         success: false,
         error: true,
-        message: 'Please enter a valid email address'
+        message: 'Please enter a valid email address',
       })
       return
     }
@@ -55,16 +74,16 @@ export default function ContactSection() {
       loading: true,
       success: false,
       error: false,
-      message: ''
+      message: '',
     })
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       })
 
       const data = await response.json()
@@ -77,7 +96,7 @@ export default function ContactSection() {
         loading: false,
         success: true,
         error: false,
-        message: 'Message sent successfully!'
+        message: 'Message sent successfully!',
       })
 
       // Reset form after successful submission
@@ -85,7 +104,7 @@ export default function ContactSection() {
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
       })
     } catch (error) {
       console.error('Contact form error:', error)
@@ -93,7 +112,8 @@ export default function ContactSection() {
         loading: false,
         success: false,
         error: true,
-        message: error instanceof Error ? error.message : 'Failed to send message'
+        message:
+          error instanceof Error ? error.message : 'Failed to send message',
       })
     }
   }
@@ -101,9 +121,9 @@ export default function ContactSection() {
   return (
     <MotionSection
       id="contact"
+      ref={sectionRef as React.RefObject<HTMLElement>}
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      animate={{ opacity: isIntersecting ? 1 : 0 }}
       transition={{ duration: 0.6 }}
       className="py-16 container mx-auto px-4"
     >
@@ -113,8 +133,10 @@ export default function ContactSection() {
         <div className="flex flex-col items-center">
           <MotionP
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{
+              opacity: isIntersecting ? 1 : 0,
+              y: isIntersecting ? 0 : 20,
+            }}
             transition={{ duration: 0.5 }}
             className="text-center mb-8 text-lg"
           >
@@ -150,8 +172,10 @@ export default function ContactSection() {
 
           <MotionDiv
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{
+              opacity: isIntersecting ? 1 : 0,
+              y: isIntersecting ? 0 : 20,
+            }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="w-full p-6 bg-card border rounded-xl shadow-sm"
           >
@@ -160,14 +184,18 @@ export default function ContactSection() {
             {formStatus.success ? (
               <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 flex items-center space-x-3 mb-4">
                 <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400" />
-                <p className="text-green-800 dark:text-green-300">{formStatus.message}</p>
+                <p className="text-green-800 dark:text-green-300">
+                  {formStatus.message}
+                </p>
               </div>
             ) : null}
 
             {formStatus.error ? (
               <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 flex items-center space-x-3 mb-4">
                 <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                <p className="text-red-800 dark:text-red-300">{formStatus.message}</p>
+                <p className="text-red-800 dark:text-red-300">
+                  {formStatus.message}
+                </p>
               </div>
             ) : null}
 
@@ -229,7 +257,11 @@ export default function ContactSection() {
                 />
               </div>
 
-              <Button className="w-full" type="submit" disabled={formStatus.loading}>
+              <Button
+                className="w-full"
+                type="submit"
+                disabled={formStatus.loading}
+              >
                 {formStatus.loading ? (
                   <>
                     <Loader2 className="h-4 w-4 mr-2 animate-spin" />

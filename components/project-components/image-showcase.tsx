@@ -68,13 +68,13 @@ export default function ImageShowcase({
             />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-card">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 w-full bg-card">
             {imageArray.map((image, idx) => (
               <MotionDiv
                 key={idx}
                 whileHover={{ scale: 1.03 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="relative aspect-video cursor-pointer"
+                className="relative aspect-video cursor-pointer w-full"
                 onClick={() => handleImageClick(image)}
               >
                 <Image
@@ -91,7 +91,6 @@ export default function ImageShowcase({
         )}
       </MotionDiv>
 
-      {/* Image Modal */}
       <ImageModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}

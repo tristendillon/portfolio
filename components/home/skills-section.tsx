@@ -7,6 +7,7 @@ import { SiJest, SiTailwindcss, SiTypescript } from 'react-icons/si'
 import { FaGolang } from 'react-icons/fa6'
 import { RiNextjsFill } from 'react-icons/ri'
 import React from 'react'
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer'
 import { cn } from '@/lib/utils'
 interface SkillProps {
   title: string
@@ -15,11 +16,16 @@ interface SkillProps {
 }
 
 function Skill({ title, description, delay = 0 }: SkillProps) {
+  const { ref: skillRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.1,
+    triggerOnce: true,
+  })
+
   return (
     <MotionDiv
+      ref={skillRef as React.RefObject<HTMLDivElement>}
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      animate={{ opacity: isIntersecting ? 1 : 0, y: isIntersecting ? 0 : 20 }}
       transition={{ duration: 0.5, delay }}
       className="bg-card border rounded-xl p-6 shadow-sm"
     >
@@ -43,11 +49,19 @@ function Technology({
   wrapperClassName,
 }: TechnologyProps) {
   const iconElement = icon as React.ReactElement<React.SVGProps<SVGSVGElement>>
+  const { ref: techRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.1,
+    triggerOnce: true,
+  })
+
   return (
     <MotionDiv
+      ref={techRef as React.RefObject<HTMLDivElement>}
       initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
+      animate={{
+        opacity: isIntersecting ? 1 : 0,
+        scale: isIntersecting ? 1 : 0.9,
+      }}
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -5 }}
       className="flex flex-col items-center gap-2"
@@ -86,12 +100,17 @@ export default function SkillsSection() {
     { name: 'Git', icon: <FaGit fill="#F05032" /> },
   ]
 
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.15,
+    triggerOnce: true,
+  })
+
   return (
     <MotionSection
       id="skills"
+      ref={sectionRef as React.RefObject<HTMLElement>}
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      animate={{ opacity: isIntersecting ? 1 : 0 }}
       transition={{ duration: 0.6 }}
       className="py-16"
     >

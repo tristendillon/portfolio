@@ -7,6 +7,7 @@ import { SiTailwindcss, SiTypescript } from 'react-icons/si'
 import { RiNextjsFill } from 'react-icons/ri'
 import { FaGolang } from 'react-icons/fa6'
 import { useEffect, useRef, useState } from 'react'
+import { useIntersectionObserver } from '@/hooks/use-intersection-observer'
 
 export default function AboutSection() {
   const myTechStack: TechStack[] = [
@@ -18,12 +19,17 @@ export default function AboutSection() {
     { name: 'Docker', color: '#2496ED', icon: <FaDocker /> },
   ]
 
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.15,
+    triggerOnce: true,
+  })
+
   return (
     <MotionSection
       id="about"
+      ref={sectionRef as React.RefObject<HTMLElement>}
       initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      animate={{ opacity: isIntersecting ? 1 : 0 }}
       transition={{ duration: 0.6 }}
       className="py-16 bg-accent/10"
     >
@@ -48,8 +54,10 @@ export default function AboutSection() {
           <div className="grid md:grid-cols-2 gap-8">
             <MotionDiv
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{
+                opacity: isIntersecting ? 1 : 0,
+                y: isIntersecting ? 0 : 20,
+              }}
               transition={{ duration: 0.5 }}
               className="space-y-4"
             >
@@ -69,8 +77,10 @@ export default function AboutSection() {
 
             <MotionDiv
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              animate={{
+                opacity: isIntersecting ? 1 : 0,
+                y: isIntersecting ? 0 : 20,
+              }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="bg-card border rounded-xl p-6 shadow-sm space-y-4"
             >
@@ -101,7 +111,6 @@ export default function AboutSection() {
                     </p>
                   }
                 />
-
               </div>
             </MotionDiv>
           </div>
